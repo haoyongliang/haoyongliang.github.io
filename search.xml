@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>URI is not registered (Settings | Languages &amp; Frameworks | Schemas and DTDs</title>
+      <link href="/2019/07/16/%E9%97%AE%E9%A2%98/UriIsNotRegistered/"/>
+      <url>/2019/07/16/%E9%97%AE%E9%A2%98/UriIsNotRegistered/</url>
+      
+        <content type="html"><![CDATA[<h1 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h1><p>在idea中，当初手动第一次写spring配置文件的时候，出现了这个错误。</p><p><img src="//haoyongliang.gitee.io/2019/07/16/问题/UriIsNotRegistered/01.png" alt></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>拷贝第三行红色的文字</p><p><img src="//haoyongliang.gitee.io/2019/07/16/问题/UriIsNotRegistered/02.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发中遇到的问题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IDEA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker的基本使用</title>
       <link href="/2019/07/13/docker/docker/"/>
       <url>/2019/07/13/docker/docker/</url>
@@ -444,22 +469,22 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><img src="//haoyongliang.gitee.io/categories/head.jpg" alt></p>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[<p><img src="//haoyongliang.gitee.io/categories/head.jpg" alt></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
