@@ -29,19 +29,6 @@
     
     
     <entry>
-      <title></title>
-      <link href="/2019/07/19/%E7%AE%80%E5%8E%86/%E7%AE%80%E5%8E%86/"/>
-      <url>/2019/07/19/%E7%AE%80%E5%8E%86/%E7%AE%80%E5%8E%86/</url>
-      
-        <content type="html"><![CDATA[<blockquote><h2 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h2></blockquote><blockquote><h2 id="求职意向"><a href="#求职意向" class="headerlink" title="求职意向"></a>求职意向</h2></blockquote><table><thead><tr><th align="left">工作性质：全职</th><th>目标地点：太原/晋中</th></tr></thead><tbody><tr><td align="left"><strong>目标职能：Java高级软件工程师</strong></td><td><strong>目标薪资：面议</strong></td></tr></tbody></table><blockquote><h2 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h2></blockquote><p>1.熟练掌握JavaSE基础知识，熟悉多线程与并发变成，拥有丰富的系统设计分析能力以及面向对象分析和设计能力，熟悉常用的设计模式（代理、单例、工厂、建造者、观察者、策略等）及反射、自定义注解、泛型等。</p><p>2.熟练掌握Eclipse/IDE、Svn、Git、Maven、Docker等开发及版本控制工具，熟练掌握Java基础技术Jsp、Servlet、Jdbc，熟练掌握Web应用系统开发具备的独立开发能力。</p><p>3.熟悉网络通讯技术Socket、Netty、Mina、NIO、WebSocket、Http</p><p>4.熟悉JVM参数调优、性能检测工具、生产环境服务器jvm调优配置、压力测试工具JMeter、阿里代码扫描工具。</p><p>5.熟练使用Oracle、MySQL等关系型数据库，熟练使用Redis、MongoDB等非关系型数据库以及搜索服务框架Elasticsearch和Lucence</p><p>6.熟练使用Tomcat、Jetty服务器，发布部署WEB项目，熟练使Nginx+Keepalived实现服务高可用</p><p>7.熟练使用Spring、Mybatis、SpringBoot2.0等开源框架，熟悉Spring的IOC、DI、AOP设计思想；</p><p>8.熟悉SOA、分布式、微服务、大型网站架构，熟悉RPC远程调用、Dubbo、Dubbox、SpringCloud等微服务框架。</p><p>9.熟悉SpringCloud常用组件、注册中心Eureka、Consul，负载均衡器Ribbon、客户端调用工具Rest和Feign，分布式配置中心Config和携程阿波罗，服务保护Hystrix,网关Zuul Gateway，Api管理Swagger，服务链路Zipkin，消息总线Bus等</p><p>10.熟练使用网络通信协议，熟练使用JSON\XML通讯格式，熟悉常见消息中间ActiveMQ\RocketMQ\Kafka使用</p><p>11.熟悉Restfull API开发规范，熟悉三方授权OAuth协议、JWT协议、对接第三方支付接口（银联、支付宝、微信支付）及微信公众号开发；</p><p>12.熟悉分布式协调工具Zookeeper、集群、高可用、高并发解决方案 服务降级、限流、熔断、隔离等，熟悉分布式和微服务常见解决方案（如：分布式任务调度平台、分布式服务追踪与调用链、分布式Session一致性问题、分布式锁解决方案、分布式事物解决方案LCN、分布式日志手机ELK、分布式生成全局ID、微服务开房平台设计）</p><p>13.熟悉JUNIT单元测试、jmeter压力测试工具、testng自动化测试等主流测试框架；</p><p>14.熟悉互联网安全架构平台设计例如XSS、SQL注入问题、防盗链等，互联网API接口幂等性设计、互联网API接口安全设计等，</p><p>15，有丰富微服务电商项目开发实战经验，熟悉整个微服务电商项目的架构流程，并实际参数过微服务电商项目，从项目需求讨论、研发阶段、分布式环境部署、技术难题解决、上线CDN部署等。</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>URI is not registered (Settings | Languages &amp; Frameworks | Schemas and DTDs</title>
       <link href="/2019/07/16/%E9%97%AE%E9%A2%98/UriIsNotRegistered/"/>
       <url>/2019/07/16/%E9%97%AE%E9%A2%98/UriIsNotRegistered/</url>
