@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>修改maven默认仓库</title>
+      <title>springMVC拦截器拦截静态资源问题</title>
       <link href="/2019/08/27/%E9%97%AE%E9%A2%98/springMVC%E6%8B%A6%E6%88%AA%E5%99%A8%E6%8B%A6%E6%88%AA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E9%97%AE%E9%A2%98/"/>
       <url>/2019/08/27/%E9%97%AE%E9%A2%98/springMVC%E6%8B%A6%E6%88%AA%E5%99%A8%E6%8B%A6%E6%88%AA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E9%97%AE%E9%A2%98/</url>
       
@@ -13,7 +13,7 @@
       
       <categories>
           
-          <category> springmvc </category>
+          <category> 开发中遇到的问题 </category>
           
       </categories>
       
