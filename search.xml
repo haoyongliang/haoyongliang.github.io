@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>常见的MAVEN依赖</title>
-      <link href="/2019/08/27/maven/maven%E4%BB%93%E5%BA%93%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-      <url>/2019/08/27/maven/maven%E4%BB%93%E5%BA%93%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      <title>maven依赖报错解决方案</title>
+      <link href="/2019/08/27/maven/maven%E4%BE%9D%E8%B5%96%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+      <url>/2019/08/27/maven/maven%E4%BE%9D%E8%B5%96%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
       
-        <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>开发中经常遇到pom文件依赖报红的问题，下面提供了几种解决方案</p><p><img src="//haoyongliang.gitee.io/2019/08/27/maven/maven仓库报错解决方案/1.png" alt></p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>1.检查依赖是否单词拼写错误</p><p>2.先删除全部pom中爆红的依赖，然后再一个一个粘贴进去，定位真正产生问题的依赖</p><p>3.找到本地maven仓库，从maven仓库中删除对应的jar包和目录，重新下载</p><p>4.如果下载不回来，检查远程仓库是否有对应的依赖，打开maven安装目录下的settings.xml文件，找到mirrors标签，查看用到了远程仓库地址，打开仓库，查询是否有对应的依赖，如果没有换个依赖版本即可。</p><p>5.如果经常出现这问题更换maven，重新安装maven，并且将之前已有的仓库删掉，重新下载依赖</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>开发中经常遇到pom文件依赖报红的问题，下面提供了几种解决方案</p><p><img src="//haoyongliang.gitee.io/2019/08/27/maven/maven依赖报错解决方案/1.png" alt></p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>1.检查依赖是否单词拼写错误</p><p>2.先删除全部pom中爆红的依赖，然后再一个一个粘贴进去，定位真正产生问题的依赖</p><p>3.找到本地maven仓库，从maven仓库中删除对应的jar包和目录，重新下载</p><p>4.如果下载不回来，检查远程仓库是否有对应的依赖，打开maven安装目录下的settings.xml文件，找到mirrors标签，查看用到了远程仓库地址，打开仓库，查询是否有对应的依赖，如果没有换个依赖版本即可。</p><p>5.如果经常出现这问题更换maven，重新安装maven，并且将之前已有的仓库删掉，重新下载依赖</p>]]></content>
       
       
       <categories>
