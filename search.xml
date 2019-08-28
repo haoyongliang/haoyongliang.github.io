@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>初始化Centos部署环境</title>
+      <link href="/2019/08/28/linux/%E5%88%9D%E5%A7%8B%E5%8C%96Centos%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83/"/>
+      <url>/2019/08/28/linux/%E5%88%9D%E5%A7%8B%E5%8C%96Centos%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装gcc-gcc-c"><a href="#安装gcc-gcc-c" class="headerlink" title="安装gcc gcc-c++"></a>安装gcc gcc-c++</h1><blockquote><p>如新环境,未安装请先安装</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum install -y gcc gcc-c++</span><br></pre></td></tr></table></figure><h1 id="安装wget"><a href="#安装wget" class="headerlink" title="安装wget"></a>安装wget</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum -y install wget</span><br></pre></td></tr></table></figure><h1 id="安装PCRE库"><a href="#安装PCRE库" class="headerlink" title="安装PCRE库"></a>安装PCRE库</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /usr/local/</span><br><span class="line"><span class="meta">$</span> wget http://jaist.dl.sourceforge.net/project/pcre/pcre/8.33/pcre-8.33.tar.gz</span><br><span class="line"><span class="meta">$</span> tar -zxvf pcre-8.33.tar.gz</span><br><span class="line"><span class="meta">$</span> cd pcre-8.33</span><br><span class="line"><span class="meta">$</span> ./configure</span><br><span class="line"><span class="meta">$</span> make &amp;&amp; make install</span><br></pre></td></tr></table></figure><h1 id="安装SSL库"><a href="#安装SSL库" class="headerlink" title="安装SSL库"></a>安装SSL库</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /usr/local/</span><br><span class="line"><span class="meta">$</span> wget http://www.openssl.org/source/openssl-1.0.1j.tar.gz</span><br><span class="line"><span class="meta">$</span> tar -zxvf openssl-1.0.1j.tar.gz</span><br><span class="line"><span class="meta">$</span> cd openssl-1.0.1j</span><br><span class="line"><span class="meta">$</span> ./config</span><br><span class="line"><span class="meta">$</span> make &amp;&amp; make install</span><br></pre></td></tr></table></figure><h1 id="安装zlib库存"><a href="#安装zlib库存" class="headerlink" title="安装zlib库存"></a>安装zlib库存</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /usr/local/</span><br><span class="line"><span class="meta">$</span> wget http://zlib.net/zlib-1.2.11.tar.gz</span><br><span class="line"><span class="meta">$</span> tar -zxvf zlib-1.2.11.tar.gz</span><br><span class="line"><span class="meta">$</span> ./configure</span><br><span class="line"><span class="meta">$</span> make &amp;&amp; make install</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Centos7 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关闭Centos7的防火墙</title>
+      <link href="/2019/08/28/linux/%E5%85%B3%E9%97%ADCentos7%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99/"/>
+      <url>/2019/08/28/linux/%E5%85%B3%E9%97%ADCentos7%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99/</url>
+      
+        <content type="html"><![CDATA[<h1 id="临时关闭"><a href="#临时关闭" class="headerlink" title="临时关闭"></a>临时关闭</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure><h1 id="永久关闭-禁止开机启动"><a href="#永久关闭-禁止开机启动" class="headerlink" title="永久关闭[禁止开机启动]"></a>永久关闭[禁止开机启动]</h1><p>临时关闭防火墙后在重启系统后就又会启动防火墙，下面是永久关闭防火墙的命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld</span><br><span class="line"></span><br><span class="line">Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.</span><br><span class="line"></span><br><span class="line">Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Centos7 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>maven依赖报错解决方案</title>
       <link href="/2019/08/27/%E9%97%AE%E9%A2%98/maven%E4%BE%9D%E8%B5%96%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
       <url>/2019/08/27/%E9%97%AE%E9%A2%98/maven%E4%BE%9D%E8%B5%96%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
@@ -623,22 +673,22 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[<p><img src="//haoyongliang.gitee.io/categories/head.jpg" alt></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><img src="//haoyongliang.gitee.io/categories/head.jpg" alt></p>]]></content>
       
     </entry>
     
