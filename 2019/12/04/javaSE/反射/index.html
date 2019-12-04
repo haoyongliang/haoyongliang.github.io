@@ -17,7 +17,7 @@
   runtime_unit: '天'
 
   
-}</script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-number">1.</span> <span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是反射"><span class="toc-number">1.1.</span> <span class="toc-text">什么是反射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#官方介绍"><span class="toc-number">1.1.1.</span> <span class="toc-text">官方介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通俗解释"><span class="toc-number">1.1.2.</span> <span class="toc-text">通俗解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取Class对象的方式"><span class="toc-number">1.2.</span> <span class="toc-text">获取Class对象的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射操作对象的属性"><span class="toc-number">1.3.</span> <span class="toc-text">通过反射操作对象的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射操作构造方法"><span class="toc-number">1.4.</span> <span class="toc-text">通过反射操作构造方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射操作对象的普通方法"><span class="toc-number">1.5.</span> <span class="toc-text">通过反射操作对象的普通方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射案例"><span class="toc-number">1.6.</span> <span class="toc-text">反射案例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注解"><span class="toc-number">2.</span> <span class="toc-text">注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">2.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格式"><span class="toc-number">2.2.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">2.3.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元"><span class="toc-number">2.4.</span> <span class="toc-text">元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元注解"><span class="toc-number">2.5.</span> <span class="toc-text">元注解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单词"><span class="toc-number">4.</span> <span class="toc-text">单词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反射作业"><span class="toc-number">5.</span> <span class="toc-text">反射作业</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://haoyongliang.gitee.io/2019/12/04/javaSE/%E5%8F%8D%E5%B0%84/1.gif)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">郝永亮的主页</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><span class="pull-right menus"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">反射</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2019-12-04<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2019-12-04</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java核心/">Java核心</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h2 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h2><h3 id="官方介绍"><a href="#官方介绍" class="headerlink" title="官方介绍"></a>官方介绍</h3><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p>
+}</script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-number">1.</span> <span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是反射"><span class="toc-number">1.1.</span> <span class="toc-text">什么是反射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#官方介绍"><span class="toc-number">1.1.1.</span> <span class="toc-text">官方介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通俗解释"><span class="toc-number">1.1.2.</span> <span class="toc-text">通俗解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取Class对象的方式"><span class="toc-number">1.2.</span> <span class="toc-text">获取Class对象的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射操作对象的属性"><span class="toc-number">1.3.</span> <span class="toc-text">通过反射操作对象的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射操作构造方法"><span class="toc-number">1.4.</span> <span class="toc-text">通过反射操作构造方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射操作对象的普通方法"><span class="toc-number">1.5.</span> <span class="toc-text">通过反射操作对象的普通方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射案例"><span class="toc-number">1.6.</span> <span class="toc-text">反射案例</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://haoyongliang.gitee.io/2019/12/04/javaSE/%E5%8F%8D%E5%B0%84/1.gif)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">郝永亮的主页</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><span class="pull-right menus"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">反射</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2019-12-04<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2019-12-04</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java核心/">Java核心</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h2 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h2><h3 id="官方介绍"><a href="#官方介绍" class="headerlink" title="官方介绍"></a>官方介绍</h3><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p>
 <h3 id="通俗解释"><a href="#通俗解释" class="headerlink" title="通俗解释"></a>通俗解释</h3><p>把.class文件加载到内存，并创建对应的Class对象(<strong>这是第一步</strong>)，然后获取Class对象(字节码对象)中的Constructor,Field,Method（<strong>这是第二步</strong>）。并通过这三个对象任意操作内存中的对象属性和行为（<strong>这是第三步</strong>）。</p>
 <p>名词解释：</p>
 <p>Constructor 构造方法描述器</p>
@@ -47,99 +47,6 @@
 <p>java代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line"><span class="comment">//表示将src目录下的config.properties中的数据加载到当前集合中</span></span><br><span class="line">properties.load(反射的应用真实案例.class.getClassLoader().getResourceAsStream(<span class="string">"config.properties"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/*目的：执行className这个类中methodName这个方法*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第一步：根据className的值创建对象className的值：cn.itcast.domain.Cat</span></span><br><span class="line">String className = properties.getProperty(<span class="string">"className"</span>);</span><br><span class="line">Class clazz = Class.forName(className);</span><br><span class="line">Constructor constructor = clazz.getDeclaredConstructor();</span><br><span class="line">constructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">Object obj = constructor.newInstance();</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步：执行对应的方法</span></span><br><span class="line">String methodName = properties.getProperty(<span class="string">"methodName"</span>);<span class="comment">//methodName的值eat</span></span><br><span class="line">Method method = clazz.getDeclaredMethod(methodName);</span><br><span class="line">method.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">method.invoke(obj);</span><br></pre></td></tr></table></figure>
 
-<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>注解就是一个标记，该标记给编译器看的。并且需要配合反射使用才能生效</p>
-<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)<span class="comment">//此句必须加</span></span><br><span class="line"><span class="meta">@Target</span>(value = &#123;ElementType.PARAMETER,ElementType.FIELD&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> 注解名&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//数据类型 属性名() defalut 默认值;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//数据类型，基本类型，String，枚举,数组,注解</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> 星期&#123;</span><br><span class="line"></span><br><span class="line">	星期<span class="number">1</span>,星期<span class="number">2</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果注解中的属性没有默认值，那么在使用该注解的时候必须给默认值</p>
-<p>如果注解只有一个value属性，那么在使用该注解的时候给value属性赋值时可以省略value</p>
-<p>如果给注解中的数组属性赋值，格式  属性名={,,}</p>
-<h2 id="元"><a href="#元" class="headerlink" title="元"></a>元</h2><p>元：描述XXX的数据</p>
-<p>元昊:描述元昊的数据</p>
-<p>元数据：描述数据的数据</p>
-<p>元注解：描述注解的注解</p>
-<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><p>java中元注解有四个： @Retention @Target @Document @Inherited；</p>
-<p>　　 1.@Retention：注解的保留位置　　　　　　　　　</p>
-<p>　　　　　　@Retention(RetentionPolicy.SOURCE)   //注解仅存在于源码中，在class字节码文件中不包含</p>
-<p>　　　　　　@Retention(RetentionPolicy.CLASS)     // 默认的保留策略，注解会在class字节码文件中存在，但运行时无法获得，</p>
-<p>　　　　　　<strong>@Retention(RetentionPolicy.RUNTIME)  // 注解会在class字节码文件中存在，在运行时可以通过反射获取到</strong></p>
-<p>　　</p>
-<p>　　2.@Target:注解的作用目标</p>
-<p>　　　　　　　　@Target(ElementType.TYPE)   //接口、类、枚举、注解</p>
-<p>　　　　　　　　@Target(ElementType.FIELD) //字段、枚举的常量</p>
-<p>　　　　　　　　@Target(ElementType.METHOD) //方法</p>
-<p>　　　　　　　　@Target(ElementType.PARAMETER) //方法参数</p>
-<p>　　　　　　　　@Target(ElementType.CONSTRUCTOR)  //构造函数</p>
-<p>　　　　　　　　@Target(ElementType.LOCAL_VARIABLE)//局部变量</p>
-<p>　　　　　　　　@Target(ElementType.ANNOTATION_TYPE)//注解</p>
-<p>　　　　　　　　@Target(ElementType.PACKAGE) ///包   </p>
-<p>​         3.@Document：说明该注解将被包含在javadoc中</p>
-<p>　       4.@Inherited：说明子类可以继承父类中的该注解</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>1.junit测试</p>
-<p>​    编写方法</p>
-<p>​        @Test</p>
-<p>​        public void 方法名() throws Exception{</p>
-<p>​        }</p>
-<p>2.反射</p>
-<p>​    通过另一个中方式操作对象的属性，方法，构造方法</p>
-<p>​    在程序运行过程中，动态的获取其构造方法，方法，属性，注解</p>
-<p>​    通用书写步骤(无论是私有的，还是非私有的)</p>
-<p>​        1.获取字节码对象</p>
-<p>​        2.获取构造方法/成员方法/属性,getDeclaredXXXX</p>
-<p>​        3.设置访问权限 setAccessible(true)</p>
-<p>​        4.xx不确定</p>
-<p>3.注解(了解)</p>
-<p>​    两种使用方式</p>
-<p>​        1.作为配置文件使用</p>
-<p>​        2.作为标记</p>
-<p>​    定义格式</p>
-<p>​    @Retention(RetentionPolicy.RUNTIME)//此句必须加</p>
-<p>​    public @interface A{</p>
-<p>​        数据类型 属性名() default 属性值;</p>
-<p>​    }</p>
-<p>​    使用</p>
-<p>​        可以在类，方法，属性，形参</p>
-<p>​        @A</p>
-<p>​        public class Test{</p>
-<p>​            @A</p>
-<p>​            private String name;</p>
-<p>​            @A</p>
-<p>​            public void show(@A String a){</p>
-<p>​            }</p>
-<p>​        }</p>
-<p>​    注解肯定配合反射使用</p>
-<p>​        Class clazz = PersonTest.class;</p>
-<p>​        Q q= (Q)clazz.getDeclaredAnnotation(Q.class);</p>
-<p>​        q.age();//获取注解中的属性</p>
-<p>​        接下来要根据属性的值进行判断。。。</p>
-<h1 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h1><p>junit 单元测试</p>
-<p>generate 生成</p>
-<p>assert 断言：拿程序运行出来的结果和预期结果进行比对，如果不符合条件就报错</p>
-<p>actual 真实的</p>
-<p>expected 期望的</p>
-<p>before 在…之前</p>
-<p>after 在…之后</p>
-<p>init 初始化</p>
-<p>destory 销毁，摧毁</p>
-<p>db 数据库缩写 database</p>
-<p>properties 多个属性</p>
-<p>Method 方法</p>
-<p>Constructor 构造方法、构造器</p>
-<p>Field 属性、字段</p>
-<p>Instance 实例、对象的意思</p>
-<p>invoke 执行</p>
-<p>Declared  声明</p>
-<p>Accessible 访问权限</p>
-<p>Reflect 反射</p>
-<p>such 这样</p>
-<p>NoSuchMethodException 方法不存在，没有这样的方法</p>
-<p>annotation  注解</p>
-<p>target 目标</p>
-<p>element 元素</p>
-<p>type 类型</p>
-<p>Retention 保留</p>
-<p>policy 方针,方案</p>
-<p>retentionPolicy 保留方案</p>
-<h1 id="反射作业"><a href="#反射作业" class="headerlink" title="反射作业"></a>反射作业</h1><p>定义集合ArrayList<integer> list = new ArrayList&lt;&gt;();，使用反射将字符串“abc”存进去</integer></p>
 </div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">郝永亮</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://haoyongliang.gitee.io/2019/12/04/javaSE/反射/">https://haoyongliang.gitee.io/2019/12/04/javaSE/反射/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haoyongliang.gitee.io">郝永亮的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java核心/">java核心    </a></div><div class="post_share"><div class="social-share" data-image="https://haoyongliang.gitee.io/2019/12/04/javaSE/%E5%8F%8D%E5%B0%84/1.gif" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2019/11/17/IDEA/修改Idea快捷键DoubleShift/"><img class="next_cover lozad" data-src="https://haoyongliang.gitee.io/2019/11/17/IDEA/%E4%BF%AE%E6%94%B9Idea%E5%BF%AB%E6%8D%B7%E9%94%AEDoubleShift/top.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>IDEA中双击Shift 弹出search everywhere</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/07/09/javaSE/类加载器/" title="类加载器"><img class="relatedPosts_cover lozad" data-src="https://haoyongliang.gitee.io/2019/07/09/javaSE/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/top.gif"><div class="relatedPosts_title">类加载器</div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i> <span>评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTI3Ni8yMTc4OQ=="><script>(function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
     if (typeof LivereTower === 'function') { return; }
