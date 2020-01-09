@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>重装系统后配置gitee与博客</title>
+      <link href="/2020/01/09/gitee/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%85%8D%E7%BD%AEgitee%E4%B8%8E%E5%8D%9A%E5%AE%A2/"/>
+      <url>/2020/01/09/gitee/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%85%8D%E7%BD%AEgitee%E4%B8%8E%E5%8D%9A%E5%AE%A2/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>重装系统后需要将本地未及时更新到git的数据同步过去</p><p>也需要重新配置gitee博客</p></blockquote><h1 id="1-安装和配置git"><a href="#1-安装和配置git" class="headerlink" title="1.安装和配置git"></a>1.安装和配置git</h1><h2 id="1-1安装"><a href="#1-1安装" class="headerlink" title="1.1安装"></a>1.1安装</h2><p>安装就不介绍了，下一步即可</p><h2 id="1-2配置"><a href="#1-2配置" class="headerlink" title="1.2配置"></a>1.2配置</h2><blockquote><p>设置你的用户名称和e-mail地址这是非常重要的，因为每次Git提交都会使用该信息。它被永远的嵌入到了你的提交中</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "haoyongliang@foxmail.com"</span><br><span class="line">git config --global user.name "haoyongliang"</span><br></pre></td></tr></table></figure><p>然后在之前git项目根路径右键运行git图形化界面，并依次点击以下按钮</p><p><img src="//haoyongliang.gitee.io/2020/01/09/gitee/重装系统后配置gitee与博客/1.jpg" alt="1"></p><p>点击push会弹出登录，输入账号和密码即可</p><p><img src="//haoyongliang.gitee.io/2020/01/09/gitee/重装系统后配置gitee与博客/2.jpg" alt="2"></p><h1 id="2-配置gitee博客"><a href="#2-配置gitee博客" class="headerlink" title="2.配置gitee博客"></a>2.配置gitee博客</h1><h2 id="2-1安装node"><a href="#2-1安装node" class="headerlink" title="2.1安装node"></a>2.1安装node</h2><p>安装就不介绍了，下一步即可，建议安装到非C盘，这样即使C盘重装后只需要配置环境变量就行了</p><h2 id="2-2安装cnpm"><a href="#2-2安装cnpm" class="headerlink" title="2.2安装cnpm"></a>2.2安装cnpm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm</span><br></pre></td></tr></table></figure><h2 id="2-3安装hexo-cli"><a href="#2-3安装hexo-cli" class="headerlink" title="2.3安装hexo-cli"></a>2.3安装hexo-cli</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure><h2 id="2-4-生成博客并提交"><a href="#2-4-生成博客并提交" class="headerlink" title="2.4 生成博客并提交"></a>2.4 生成博客并提交</h2><p>进入到博客项目根目录执行以下命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> gitee </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> gitee </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>lombok中关于log4j2日志的配置</title>
       <link href="/2020/01/07/%E5%B7%A5%E5%85%B7/lombok%E4%B8%AD%E5%85%B3%E4%BA%8Elog4j2%E6%97%A5%E5%BF%97%E7%9A%84%E9%85%8D%E7%BD%AE/"/>
       <url>/2020/01/07/%E5%B7%A5%E5%85%B7/lombok%E4%B8%AD%E5%85%B3%E4%BA%8Elog4j2%E6%97%A5%E5%BF%97%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
@@ -752,33 +777,6 @@
     
     
     <entry>
-      <title>MySQL中的事物</title>
-      <link href="/2019/07/08/mysql/MySQL%E4%B8%AD%E7%9A%84%E4%BA%8B%E7%89%A9/"/>
-      <url>/2019/07/08/mysql/MySQL%E4%B8%AD%E7%9A%84%E4%BA%8B%E7%89%A9/</url>
-      
-        <content type="html"><![CDATA[<h1 id="什么是事物"><a href="#什么是事物" class="headerlink" title="什么是事物"></a>什么是事物</h1><p>​    在实际的开发过程中，一个业务操作如：转账，往往是要多次访问数据库才能完成的。转 账是一个用户扣钱，另一个用户加钱。如果其中有一条 SQL 语句出现异常，这条 SQL 就可能执行失败。 事务执行是一个整体，所有的 SQL 语句都必须执行成功。如果其中有 1 条 SQL 语句出现异常，则所有的 SQL 语句都要回滚，整个业务执行失败</p><p>​    MySQL默认开启事物，ORACLE默认关闭事物</p><h1 id="事物的四大特性"><a href="#事物的四大特性" class="headerlink" title="事物的四大特性"></a>事物的四大特性</h1><ul><li><p>原子性（Atomicity）<br>每个事务都是一个整体，不可再拆分，事务中所有的 SQL 语句要么都执行成功， 要么都失败。 </p></li><li><p>一致性（Consistency）<br>事务在执行前数据库的状态与执行后数据库的状态保持一致。如：转账前2个人的 总金额是 2000，转账后 2 个人总金额也是 2000 </p></li><li><p>隔离性（Isolation） 事务与事务之间不应该相互影响，执行时保持隔离的状态。 </p></li><li><p>持久性（Durability） 一旦事务执行成功，对数据库的修改是持久的。就算关机，也是保存下来的。 </p></li></ul><h1 id="事物的四个隔离级别"><a href="#事物的四个隔离级别" class="headerlink" title="事物的四个隔离级别"></a>事物的四个隔离级别</h1><ul><li><p>read uncommited</p><pre><code>会读到其他事物没有提交的数据，换句话说读的是内存中的临时数据，不是持久化到硬盘的数据。这种现象我们成为脏读。一个用户在读取数据的时候允许其他用户对表数据进行任何操作</code></pre></li><li><p>read commited（oracle默认隔离级别）</p><pre><code>读取到的时候持久化到硬盘的数据，一个用户在读取数据的时候如果其他用户对表数据进行操作，则再次读取到的数据会不一致。</code></pre></li><li><p>repeatable read（mysql默认隔离级别）</p><pre><code>一个用户在读取数据的时候如果其他用户对表数据进行删除和添加操作，再次读取到的记录条数会不一致。</code></pre></li><li><p>serializable</p><pre><code>在读取的时候不允许别人任何操作</code></pre></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 数据库 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 数据库 </tag>
-            
-            <tag> MySQL </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MySQL中DCL相关语句的使用</title>
       <link href="/2019/07/08/mysql/MySQL%E4%B8%ADDCL%E7%9B%B8%E5%85%B3%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
       <url>/2019/07/08/mysql/MySQL%E4%B8%ADDCL%E7%9B%B8%E5%85%B3%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
@@ -806,23 +804,25 @@
     
     
     <entry>
-      <title>重装系统后配置gitee与博客</title>
-      <link href="/2019/07/06/gitee/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%85%8D%E7%BD%AEgitee%E4%B8%8E%E5%8D%9A%E5%AE%A2/"/>
-      <url>/2019/07/06/gitee/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%85%8D%E7%BD%AEgitee%E4%B8%8E%E5%8D%9A%E5%AE%A2/</url>
+      <title>MySQL中的事物</title>
+      <link href="/2019/07/08/mysql/MySQL%E4%B8%AD%E7%9A%84%E4%BA%8B%E7%89%A9/"/>
+      <url>/2019/07/08/mysql/MySQL%E4%B8%AD%E7%9A%84%E4%BA%8B%E7%89%A9/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>重装系统后需要将本地未及时更新到git的数据同步过去</p><p>也需要重新配置gitee博客</p></blockquote><h1 id="1-安装和配置git"><a href="#1-安装和配置git" class="headerlink" title="1.安装和配置git"></a>1.安装和配置git</h1><h2 id="1-1安装"><a href="#1-1安装" class="headerlink" title="1.1安装"></a>1.1安装</h2><p>安装就不介绍了，下一步即可</p><h2 id="1-2配置"><a href="#1-2配置" class="headerlink" title="1.2配置"></a>1.2配置</h2><blockquote><p>设置你的用户名称和e-mail地址这是非常重要的，因为每次Git提交都会使用该信息。它被永远的嵌入到了你的提交中</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "haoyongliang@foxmail.com"</span><br><span class="line">git config --global user.name "haoyongliang"</span><br></pre></td></tr></table></figure><p>然后在之前git项目根路径右键运行git图形化界面，并依次点击以下按钮</p><p><img src="//haoyongliang.gitee.io/2019/07/06/gitee/重装系统后配置gitee与博客/1.jpg" alt="1"></p><p>点击push会弹出登录，输入账号和密码即可</p><p><img src="//haoyongliang.gitee.io/2019/07/06/gitee/重装系统后配置gitee与博客/2.jpg" alt="2"></p><h1 id="2-配置gitee博客"><a href="#2-配置gitee博客" class="headerlink" title="2.配置gitee博客"></a>2.配置gitee博客</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="什么是事物"><a href="#什么是事物" class="headerlink" title="什么是事物"></a>什么是事物</h1><p>​    在实际的开发过程中，一个业务操作如：转账，往往是要多次访问数据库才能完成的。转 账是一个用户扣钱，另一个用户加钱。如果其中有一条 SQL 语句出现异常，这条 SQL 就可能执行失败。 事务执行是一个整体，所有的 SQL 语句都必须执行成功。如果其中有 1 条 SQL 语句出现异常，则所有的 SQL 语句都要回滚，整个业务执行失败</p><p>​    MySQL默认开启事物，ORACLE默认关闭事物</p><h1 id="事物的四大特性"><a href="#事物的四大特性" class="headerlink" title="事物的四大特性"></a>事物的四大特性</h1><ul><li><p>原子性（Atomicity）<br>每个事务都是一个整体，不可再拆分，事务中所有的 SQL 语句要么都执行成功， 要么都失败。 </p></li><li><p>一致性（Consistency）<br>事务在执行前数据库的状态与执行后数据库的状态保持一致。如：转账前2个人的 总金额是 2000，转账后 2 个人总金额也是 2000 </p></li><li><p>隔离性（Isolation） 事务与事务之间不应该相互影响，执行时保持隔离的状态。 </p></li><li><p>持久性（Durability） 一旦事务执行成功，对数据库的修改是持久的。就算关机，也是保存下来的。 </p></li></ul><h1 id="事物的四个隔离级别"><a href="#事物的四个隔离级别" class="headerlink" title="事物的四个隔离级别"></a>事物的四个隔离级别</h1><ul><li><p>read uncommited</p><pre><code>会读到其他事物没有提交的数据，换句话说读的是内存中的临时数据，不是持久化到硬盘的数据。这种现象我们成为脏读。一个用户在读取数据的时候允许其他用户对表数据进行任何操作</code></pre></li><li><p>read commited（oracle默认隔离级别）</p><pre><code>读取到的时候持久化到硬盘的数据，一个用户在读取数据的时候如果其他用户对表数据进行操作，则再次读取到的数据会不一致。</code></pre></li><li><p>repeatable read（mysql默认隔离级别）</p><pre><code>一个用户在读取数据的时候如果其他用户对表数据进行删除和添加操作，再次读取到的记录条数会不一致。</code></pre></li><li><p>serializable</p><pre><code>在读取的时候不允许别人任何操作</code></pre></li></ul>]]></content>
       
       
       <categories>
           
-          <category> gitee </category>
+          <category> 数据库 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> gitee </tag>
+            <tag> 数据库 </tag>
+            
+            <tag> MySQL </tag>
             
         </tags>
       
@@ -847,9 +847,9 @@
       
         <tags>
             
-            <tag> gitee </tag>
-            
             <tag> 博客搭建 </tag>
+            
+            <tag> gitee </tag>
             
         </tags>
       
@@ -1063,22 +1063,22 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[<p><img src="//haoyongliang.gitee.io/categories/head.jpg" alt></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><img src="//haoyongliang.gitee.io/categories/head.jpg" alt></p>]]></content>
       
     </entry>
     
