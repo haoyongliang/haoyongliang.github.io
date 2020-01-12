@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>linux基本命令 | 郝永亮的主页</title><meta name="description" content="linux基本命令"><meta name="keywords" content="linux"><meta name="author" content="haoyongliang"><meta name="copyright" content="haoyongliang"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="linux基本命令"><meta name="twitter:description" content="linux基本命令"><meta name="twitter:image" content="https://haoyongliang.gitee.io/2019/08/28/linux/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/top.jpg"><meta property="og:type" content="article"><meta property="og:title" content="linux基本命令"><meta property="og:url" content="https://haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/"><meta property="og:site_name" content="郝永亮的主页"><meta property="og:description" content="linux基本命令"><meta property="og:image" content="https://haoyongliang.gitee.io/2019/08/28/linux/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/top.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="next" title="重装系统后配置gitee与博客" href="https://haoyongliang.gitee.io/2020/01/09/gitee/重装系统后配置gitee与博客/"><link rel="manifest" href="/img/pwa/manifest.json"><meta name="theme-color" content="#fff"><meta name="msapplication-TileColor" content="#fff"><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: undefined,
+  highlight_copy: 'true',
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: '添加书签',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天'
+
+  
+}</script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#linux目录"><span class="toc-number">1.</span> <span class="toc-text">linux目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#切换目录"><span class="toc-number">2.</span> <span class="toc-text">切换目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#列出目录下的文件和文件夹"><span class="toc-number">3.</span> <span class="toc-text">列出目录下的文件和文件夹</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建文件夹"><span class="toc-number">4.</span> <span class="toc-text">创建文件夹</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建文件"><span class="toc-number">5.</span> <span class="toc-text">创建文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除文件和文件夹"><span class="toc-number">6.</span> <span class="toc-text">删除文件和文件夹</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#删除空文件夹"><span class="toc-number">6.1.</span> <span class="toc-text">删除空文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除非空文件夹"><span class="toc-number">6.2.</span> <span class="toc-text">删除非空文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除文件"><span class="toc-number">6.3.</span> <span class="toc-text">删除文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看文件内容"><span class="toc-number">7.</span> <span class="toc-text">查看文件内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cat"><span class="toc-number">7.1.</span> <span class="toc-text">cat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#more"><span class="toc-number">7.2.</span> <span class="toc-text">more</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#less"><span class="toc-number">7.3.</span> <span class="toc-text">less</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tail"><span class="toc-number">7.4.</span> <span class="toc-text">tail</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#复制和移动和重命名"><span class="toc-number">8.</span> <span class="toc-text">复制和移动和重命名</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#复制"><span class="toc-number">8.1.</span> <span class="toc-text">复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动或重命名"><span class="toc-number">8.2.</span> <span class="toc-text">移动或重命名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看当前所处目录"><span class="toc-number">9.</span> <span class="toc-text">查看当前所处目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下载数据"><span class="toc-number">10.</span> <span class="toc-text">下载数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#压缩与解压缩"><span class="toc-number">11.</span> <span class="toc-text">压缩与解压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#打包"><span class="toc-number">11.1.</span> <span class="toc-text">打包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包并压缩"><span class="toc-number">11.2.</span> <span class="toc-text">打包并压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解压缩"><span class="toc-number">11.3.</span> <span class="toc-text">解压缩</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查询"><span class="toc-number">12.</span> <span class="toc-text">查询</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://haoyongliang.gitee.io/2019/08/28/linux/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/top.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">郝永亮的主页</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><span class="pull-right menus"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">linux基本命令</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-01-12<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-01-12</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/linux/">linux</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="linux目录"><a href="#linux目录" class="headerlink" title="linux目录"></a>linux目录</h1><p><img src="//haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/1.png" alt="1"></p>
+<h1 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h1><blockquote>
+<p>功能：切换目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd app</span><br></pre></td></tr></table></figure>
+
+<p>切换到app目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd ..</span><br></pre></td></tr></table></figure>
+
+<p>切换到上一层目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /</span><br></pre></td></tr></table></figure>
+
+<p>切换到系统根目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd ~</span><br></pre></td></tr></table></figure>
+
+<p>切换到用户主目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd -</span><br></pre></td></tr></table></figure>
+
+<p>切换到上一个所在目录</p>
+<h1 id="列出目录下的文件和文件夹"><a href="#列出目录下的文件和文件夹" class="headerlink" title="列出目录下的文件和文件夹"></a>列出目录下的文件和文件夹</h1><p>ls(list)是一个非常有用的命令，用来显示当前目录下的内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ls</span><br></pre></td></tr></table></figure>
+
+<p><img src="//haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/2.jpg" alt="2"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ls -a</span><br></pre></td></tr></table></figure>
+
+<p>显示所有文件或目录(包含隐藏的文件),在linux中以 . 开头的文件都是隐藏的文件</p>
+<p><img src="//haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/3.jpg" alt="3"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ls -l </span><br><span class="line"><span class="meta">$</span> ll</span><br></pre></td></tr></table></figure>
+
+<p>显示文件详情，ll是缩写</p>
+<p><img src="//haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/4.jpg" alt="4"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ll -h</span><br></pre></td></tr></table></figure>
+
+<p>友好显示文件大小</p>
+<p><img src="//haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/5.jpg" alt="5"></p>
+<h1 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir app</span><br></pre></td></tr></table></figure>
+
+<p>在当前目录下创建app目录,只能创建单级目录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p app2/test</span><br></pre></td></tr></table></figure>
+
+<p>级联创建aap2以及test目</p>
+<h1 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> touch a.txt</span><br></pre></td></tr></table></figure>
+
+<p>创建一个空文件</p>
+<h1 id="删除文件和文件夹"><a href="#删除文件和文件夹" class="headerlink" title="删除文件和文件夹"></a>删除文件和文件夹</h1><h2 id="删除空文件夹"><a href="#删除空文件夹" class="headerlink" title="删除空文件夹"></a>删除空文件夹</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir app</span><br></pre></td></tr></table></figure>
+
+<p>删除app目录,前提app目录必须为空，该目录下不能有文件</p>
+<h2 id="删除非空文件夹"><a href="#删除非空文件夹" class="headerlink" title="删除非空文件夹"></a>删除非空文件夹</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rm -rf a</span><br></pre></td></tr></table></figure>
+
+<p>不询问递归删除 a目录以及该目录下的所有内容</p>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rm -rf a.txt</span><br></pre></td></tr></table></figure>
+
+<p>不询问直接删除a.txt文件</p>
+<h1 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h1><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>用于显示文件的内容。</p>
+<p>格式：cat[参数]&lt;文件名&gt;</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat yum.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><p>一般用于要显示的内容会超过一个画面长度的情况。按空格键显示下一个画面。</p>
+<p>回车显示下一行内容。</p>
+<p>按 q 键退出查看。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> more yum.conf</span><br></pre></td></tr></table></figure>
+
+<p>空格显示下一页数据 回车显示下一行的数据</p>
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><p>用法和more类似，不同的是less可以通过PgUp、PgDn键来控制。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> less yum.conf</span><br></pre></td></tr></table></figure>
+
+<p> PgUp 和 PgDn 进行上下翻页</p>
+<h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><p>tail命令是在实际使用过程中使用非常多的一个命令，它的功能是：用于显示文件后几行的内容。</p>
+<p>用法:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> tail -10 /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>查看后10行数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f catalina.log</span><br></pre></td></tr></table></figure>
+
+<p>动态查看日志,ctrl+c 结束查看</p>
+<h1 id="复制和移动和重命名"><a href="#复制和移动和重命名" class="headerlink" title="复制和移动和重命名"></a>复制和移动和重命名</h1><h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><p>cp(copy)命令可以将文件从一处复制到另一处。一般在使用cp命令时将一个文件复制成另一个文件或复制到某目录时，需要指定源文件名与目标文件名或目录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cp a.txt b.txt</span><br></pre></td></tr></table></figure>
+
+<p>将a.txt复制为b.txt文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cp a.txt ../</span><br></pre></td></tr></table></figure>
+
+<p>将a.txt文件复制到上一层目录中</p>
+<h2 id="移动或重命名"><a href="#移动或重命名" class="headerlink" title="移动或重命名"></a>移动或重命名</h2><p>mv 移动或者重命名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mv a.txt ../</span><br></pre></td></tr></table></figure>
+
+<p>将a.txt文件移动到上一层目录中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mv a.txt b.txt</span><br></pre></td></tr></table></figure>
+
+<p>将a.txt文件重命名为b.txt</p>
+<h1 id="查看当前所处目录"><a href="#查看当前所处目录" class="headerlink" title="查看当前所处目录"></a>查看当前所处目录</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pwd</span><br></pre></td></tr></table></figure>
+
+<h1 id="下载数据"><a href="#下载数据" class="headerlink" title="下载数据"></a>下载数据</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> wget http://nginx.org/download/nginx-1.9.12.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>下载nginx-1.9.12.tar.gz到当前目录</p>
+<h1 id="压缩与解压缩"><a href="#压缩与解压缩" class="headerlink" title="压缩与解压缩"></a>压缩与解压缩</h1><p>tar命令位于/bin目录下，它能够将用户所指定的文件或目录打包成一个文件，但不做压缩。一般Linux上常用的压缩方式是选用tar将许多文件打包成一个文件，再以gzip压缩命令压缩成xxx.tar.gz(或称为xxx.tgz)的文件。</p>
+<p>常用参数：</p>
+<p>-c：创建一个新tar文件</p>
+<p>-v：显示运行过程的信息</p>
+<p>-f：指定文件名</p>
+<p>-z：调用gzip压缩命令进行压缩</p>
+<p>-t：查看压缩文件的内容</p>
+<p>-x：解开tar文件</p>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> tar –cvf xxx.tar ./*</span><br></pre></td></tr></table></figure>
+
+<h2 id="打包并压缩"><a href="#打包并压缩" class="headerlink" title="打包并压缩"></a>打包并压缩</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> tar –zcvf xxx.tar.gz ./*</span><br></pre></td></tr></table></figure>
+
+<h2 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h2> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> tar –xvf xxx.tar</span><br><span class="line"><span class="meta">$</span> tar -xvf xxx.tar.gz -C /usr/aaa</span><br></pre></td></tr></table></figure>
+
+<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">haoyongliang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/">https://haoyongliang.gitee.io/2020/01/12/linux/linux基本命令/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haoyongliang.gitee.io">郝永亮的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux/">linux    </a></div><div class="post_share"><div class="social-share" data-image="https://haoyongliang.gitee.io/2019/08/28/linux/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/top.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2020/01/09/gitee/重装系统后配置gitee与博客/"><img class="next_cover lozad" data-src="https://haoyongliang.gitee.io/2020/01/09/gitee/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%85%8D%E7%BD%AEgitee%E4%B8%8E%E5%8D%9A%E5%AE%A2/top.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>重装系统后配置gitee与博客</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i> <span>评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTI3Ni8yMTc4OQ=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2016 - 2020 By haoyongliang</div><div class="footer_custom_text">Hi, welcome to my <a href="http://haoyongliang.gitee.io/">blog</a>!</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><i class="fa fa-book" id="readmode" title="阅读模式"> </i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="fa fa-moon-o nightshift" id="nightshift" title="夜间模式"></i></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script async src="/js/search/local-search.js"></script><script src="/js/nightshift.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
