@@ -2735,6 +2735,8 @@ img:hover {
 }
 #post-content p {
   font-size: 1.1em;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #post-content ol,
 #post-content ul {
