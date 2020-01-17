@@ -51,7 +51,10 @@
 
 <h1 id="注解开发"><a href="#注解开发" class="headerlink" title="注解开发"></a>注解开发</h1><h2 id="开启注解扫描"><a href="#开启注解扫描" class="headerlink" title="开启注解扫描"></a>开启注解扫描</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.itcast"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="注解分类"><a href="#注解分类" class="headerlink" title="注解分类"></a>注解分类</h2><h3 id="bean相关注解"><a href="#bean相关注解" class="headerlink" title="bean相关注解"></a>bean相关注解</h3><table>
+<h2 id="注解分类"><a href="#注解分类" class="headerlink" title="注解分类"></a>注解分类</h2><h3 id="bean相关注解"><a href="#bean相关注解" class="headerlink" title="bean相关注解"></a>bean相关注解</h3><blockquote>
+<p>以下注解的功能用于标记指定的类的对象交给spring管理</p>
+</blockquote>
+<table>
 <thead>
 <tr>
 <th>注解</th>
@@ -85,7 +88,10 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="依赖注入相关注解"><a href="#依赖注入相关注解" class="headerlink" title="依赖注入相关注解"></a>依赖注入相关注解</h3><table>
+<h3 id="依赖注入相关注解"><a href="#依赖注入相关注解" class="headerlink" title="依赖注入相关注解"></a>依赖注入相关注解</h3><blockquote>
+<p>以下注解作用在属性上，完成对属性值的注入</p>
+</blockquote>
+<table>
 <thead>
 <tr>
 <th>注解</th>
