@@ -2567,6 +2567,9 @@ figure.gallery-group .gallery-group-name:after {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+#nav.post-bg #post-info #post-meta {
+  font-size: 95%;
+}
 #nav.post-bg #post-info #post-meta .word-count,
 #nav.post-bg #post-info #post-meta #busuanzi_value_page_pv,
 #nav.post-bg #post-info #post-meta .comment-count {
