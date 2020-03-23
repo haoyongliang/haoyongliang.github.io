@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpringClound(上) | 郝永亮的主页</title><meta name="description" content="SpringClound(上)"><meta name="keywords" content="SpringCloud"><meta name="author" content="haoyongliang"><meta name="copyright" content="haoyongliang"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="SpringClound(上)"><meta name="twitter:description" content="SpringClound(上)"><meta name="twitter:image" content="https://gitee.com/haoyongliang/resources/raw/master/images/SpringCloud/SpringCloud-Security/top.jpg"><meta property="og:type" content="article"><meta property="og:title" content="SpringClound(上)"><meta property="og:url" content="https://haoyongliang.gitee.io/2020/03/23/SpringCloud/SpringCloud(%E4%B8%8A)/"><meta property="og:site_name" content="郝永亮的主页"><meta property="og:description" content="SpringClound(上)"><meta property="og:image" content="https://gitee.com/haoyongliang/resources/raw/master/images/SpringCloud/SpringCloud-Security/top.jpg"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      now = new Date();
+      hour = now.getHours();
+      isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="https://haoyongliang.gitee.io/2020/03/23/SpringCloud/SpringCloud(%E4%B8%8A)/"><link rel="next" title="web核心面试题" href="https://haoyongliang.gitee.io/2020/03/18/%E9%9D%A2%E8%AF%95%E9%A2%98/web%E6%A0%B8%E5%BF%83%E9%9D%A2%E8%AF%95%E9%A2%98/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: false,
+  isFontAwesomeV5: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/haoyongliang/resources/raw/master/images/gitee/hexo-gitee%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">51</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#系统架构演变"><span class="toc-number">1.</span> <span class="toc-text">系统架构演变</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#集中式架构"><span class="toc-number">1.1.</span> <span class="toc-text">集中式架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垂直拆分"><span class="toc-number">1.2.</span> <span class="toc-text">垂直拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式服务"><span class="toc-number">1.3.</span> <span class="toc-text">分布式服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向服务架构-SOA"><span class="toc-number">1.4.</span> <span class="toc-text">面向服务架构(SOA)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微服务架构"><span class="toc-number">1.5.</span> <span class="toc-text">微服务架构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#服务调用方式"><span class="toc-number">2.</span> <span class="toc-text">服务调用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RPC和HTTP"><span class="toc-number">2.1.</span> <span class="toc-text">RPC和HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Http客户端工具"><span class="toc-number">2.2.</span> <span class="toc-text">Http客户端工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring的RestTemplate"><span class="toc-number">2.3.</span> <span class="toc-text">Spring的RestTemplate</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么学习SpringCloud"><span class="toc-number">3.</span> <span class="toc-text">为什么学习SpringCloud</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringCloud简介"><span class="toc-number">4.</span> <span class="toc-text">SpringCloud简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#服务治理SpringCloud-Eureka"><span class="toc-number">5.</span> <span class="toc-text">服务治理SpringCloud Eureka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是服务治理"><span class="toc-number">5.1.</span> <span class="toc-text">什么是服务治理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务注册与发现"><span class="toc-number">5.2.</span> <span class="toc-text">服务注册与发现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工程搭建"><span class="toc-number">6.</span> <span class="toc-text">工程搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建父maven工程"><span class="toc-number">6.1.</span> <span class="toc-text">创建父maven工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建服务提供者"><span class="toc-number">6.2.</span> <span class="toc-text">创建服务提供者</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://gitee.com/haoyongliang/resources/raw/master/images/SpringCloud/SpringCloud-Security/top.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">郝永亮的主页</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">SpringClound(上)</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-03-23<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-03-23</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><h1 id="系统架构演变"><a href="#系统架构演变" class="headerlink" title="系统架构演变"></a>系统架构演变</h1><p>随着互联网的发展，网站应用的规模不断扩大。需求的激增，带来的是技术上的压力。系统架构也因此也不断的演 进、升级、迭代。从单一应用，到垂直拆分，到分布式服务，到SOA，以及现在火热的微服务架构，还有在Google 带领下来势汹涌的Service Mesh。我们到底是该乘坐微服务的船只驶向远方，还是偏安逸得过且过？<br>其实生活不止眼前的苟且，还有诗和远方。所以我们今天就回顾历史，看一看系统架构演变的历程；把握现在，学习 现在火的技术架构；展望未来，争取成为一名优秀的Java工程师。 </p>
+<h2 id="集中式架构"><a href="#集中式架构" class="headerlink" title="集中式架构"></a>集中式架构</h2><p>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。</p>
+<p><img src="/" alt="" class="lazyload" data-src=".%5CSpringCloud(%E4%B8%8A)%5Cimage1.png"></p>
+<blockquote>
+<p>优点</p>
+</blockquote>
+<p>系统开发速度快 </p>
+<p>维护成本低 </p>
+<p>适用于并发要求较低的系统</p>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<p>代码耦合度高，后期维护困难 </p>
+<p>无法针对不同模块进行针对性优化 </p>
+<p>无法水平扩展 </p>
+<p>单点容错率低，并发能力差</p>
+<h2 id="垂直拆分"><a href="#垂直拆分" class="headerlink" title="垂直拆分"></a>垂直拆分</h2><p>当访问量逐渐增大，单一应用无法满足需求，此时为了应对更高的并发和业务需求，我们根据业务功能对系统进行拆 分：</p>
+<p><img src="/" alt="" class="lazyload" data-src=".%5CSpringCloud(%E4%B8%8A)%5Cimage2.png"></p>
+<blockquote>
+<p>优点</p>
+</blockquote>
+<p>系统拆分实现了流量分担，解决了并发问题 </p>
+<p>可以针对不同模块进行优化 </p>
+<p>方便水平扩展，负载均衡，容错率提高</p>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<p>系统间相互独立，会有很多重复开发工作，影响开发效率 </p>
+<h2 id="分布式服务"><a href="#分布式服务" class="headerlink" title="分布式服务"></a>分布式服务</h2><p>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心， 使前端应用能更快速的响应多变的市场需求。</p>
+<p><img src="/" alt="" class="lazyload" data-src=".%5CSpringCloud(%E4%B8%8A)%5Cimage3.png"></p>
+<blockquote>
+<p>优点</p>
+</blockquote>
+<p>将基础服务进行了抽取，系统间相互调用，提高了代码复用和开发效率</p>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<p>系统间耦合度变高，调用关系错综复杂，难以维护</p>
+<h2 id="面向服务架构-SOA"><a href="#面向服务架构-SOA" class="headerlink" title="面向服务架构(SOA)"></a>面向服务架构(SOA)</h2><p>SOA架构代表面向与服务架构，俗称服务化，通俗的理解为面向与业务逻辑层开发，将共同的业务逻辑抽取出来形成一个服务，提供给其他服务接口进行调用，服务与服务之间调用使用rpc远程技术。  </p>
+<p>SOA（Service Oriented Architecture）面向服务的架构：它是一种设计方法，其中包含多个服务， 服务之间通过相 互依赖终提供一系列的功能。一个服务 通常以独立的形式存在与操作系统进程中。各个服务之间 通过网络调用。 SOA结构图：</p>
+<p><img src="/" alt="" class="lazyload" data-src=".%5CSpringCloud(%E4%B8%8A)%5Cimage4.png"></p>
+<p>ESB（企业服务总线），简单 来说 ESB 就是一根管道，用来连接各个服务节点。为了集 成不同系统，不同协 议的服务，ESB 做了消息的转化解释和路由工作，让不同的服务互联互通。</p>
+<blockquote>
+<p>SOA缺点</p>
+</blockquote>
+<p>每个供应商提供的ESB产品有偏差，自身实现较为复杂；应用服务粒度较大，ESB集成整合所有服务和协 议、数据转换使得运维、测试部署困难。所有服务都通过一个通路通信，直接降低了通信速度。 </p>
+<blockquote>
+<p>SOA架构特点</p>
+</blockquote>
+<p>1.SOA架构中通常使用XML方式实现通讯，在高并发情况下XML比较冗余会带来极大的影响，所以最后微服务架构中采用JSON替代xml方式</p>
+<p>2.SOA架构的底层实现通过WebService和ESB（xml与中间件混合物），Web Service技术是SOA服务化的一种实现方式，WebService底层采用soap协议进行通讯，soap协议就是Http或者是Https通道传输XML数据实现的协议。</p>
+<h2 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h2><p>微服务架构是使用一套小服务来开发单个应用的方式或途径，每个服务基于单一业务能力构建，运行在自己的进程 中，并使用轻量级机制通信，通常是HTTP API，并能够通过自动化部署机制来独立部署。这些服务可以使用不同的 编程语言实现，以及不同数据存储技术，并保持低限度的集中式管理。</p>
+<p><img src="/" alt="" class="lazyload" data-src=".%5CSpringCloud(%E4%B8%8A)%5Cimage5.png"></p>
+<p>API Gateway网关是一个服务器，是系统的唯一入口。为每个客户端提供一个定制的API。API网关核心是，所 有的客户端和消费端都通过统一的网关接入微服务，在网关层处理所有的非业务功能。如它还可以具有其它职 责，如身份验证、监控、负载均衡、缓存、请求分片与管理、静态响应处理。通常，网关提供RESTful/HTTP的 方式访问服务。而服务端通过服务注册中心进行服务注册和管理。</p>
+<blockquote>
+<p>微服务的特点</p>
+</blockquote>
+<ul>
+<li><p>单一职责：微服务中每一个服务都对应唯一的业务能力，做到单一职责 </p>
+</li>
+<li><p>微：微服务的服务拆分粒度很小，例如一个用户管理就可以作为一个服务。每个服务虽小，但“五脏俱全”。</p>
+</li>
+<li><p>面向服务：面向服务是说每个服务都要对外暴露Rest风格服务接口API。并不关心服务的技术实现，做到与平台 和语言无关，也不限定用什么技术实现，只要提供Rest的接口即可。 </p>
+</li>
+<li><p>自治：自治是说服务间互相独立，互不干扰</p>
+<ul>
+<li>团队独立：每个服务都是一个独立的开发团队，人数不能过多。 </li>
+<li>技术独立：因为是面向服务，提供Rest接口，使用什么技术没有别人干涉 </li>
+<li>前后端分离：采用前后端分离开发，提供统一Rest接口，后端不用再为PC、移动端开发不同接口 </li>
+<li>数据库分离：每个服务都使用自己的数据源 </li>
+<li>部署独立，服务间虽然有调用，但要做到服务重启不影响其它服务。有利于持续集成和持续交付。每个服 务都是独立的组件，可复用，可替换，降低耦合，易维护</li>
+</ul>
+</li>
+</ul>
+<p>微服务架构与SOA都是对系统进行拆分；微服务架构基于SOA思想，可以把微服务当做去除了ESB的SOA。ESB是 SOA架构中的中心总线，设计图形应该是星形的，而微服务是去中心化的分布式软件架构。两者比较类似，但其实也 有一些差别：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>SOA</th>
+<th>微服务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组件大小</td>
+<td>大块业务逻辑</td>
+<td>单独任务或小块业务逻辑</td>
+</tr>
+<tr>
+<td>耦合</td>
+<td>通常松耦合</td>
+<td>总是松耦合</td>
+</tr>
+<tr>
+<td>管理</td>
+<td>着重中央管理</td>
+<td>着重分散管理</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>保应用能够交互操作</td>
+<td>易维护、易扩展、更轻量级的交互</td>
+</tr>
+</tbody></table>
+<h1 id="服务调用方式"><a href="#服务调用方式" class="headerlink" title="服务调用方式"></a>服务调用方式</h1><h2 id="RPC和HTTP"><a href="#RPC和HTTP" class="headerlink" title="RPC和HTTP"></a>RPC和HTTP</h2><p>无论是微服务还是SOA，都面临着服务间的远程调用。那么服务间的远程调用方式有哪些呢？ </p>
+<blockquote>
+<p>常见的远程调用方式有以下2种</p>
+</blockquote>
+<ul>
+<li>RPC：Remote Produce Call远程过程调用，RPC基于Socket，工作在会话层。自定义数据格式，速度快，效 率高。早期的webservice，现在热门的dubbo，都是RPC的典型代表 </li>
+<li>Http：http其实是一种网络传输协议，基于TCP，工作在应用层，规定了数据传输的格式。现在客户端浏览器 与服务端通信基本都是采用Http协议，也可以用来进行远程服务调用。缺点是消息封装臃肿，优势是对服务的 提供和调用方没有任何技术限定，自由灵活，更符合微服务理念。<br>现在热门的Rest风格，就可以通过http协议来实现。</li>
+</ul>
+<blockquote>
+<p>区别</p>
+</blockquote>
+<p>RPC的机制是根据语言的API（language API）来定义的，而不是根据基于网络的应用来定义的。<br>如果你们公司全部采用Java技术栈，那么使用Dubbo作为微服务架构是一个不错的选择。 相反，如果公司的技术栈多样化，而且你更青睐Spring家族，那么Spring Cloud搭建微服务是不二之选。在我们的项 目中，会选择Spring Cloud套件，因此会使用Http方式来实现服务间调用。</p>
+<h2 id="Http客户端工具"><a href="#Http客户端工具" class="headerlink" title="Http客户端工具"></a>Http客户端工具</h2><p>既然微服务选择了Http，那么我们就需要考虑自己来实现对请求和响应的处理。不过开源世界已经有很多的http客户 端工具，能够帮助我们做这些事情，例如：HttpClient OKHttp URLConnection </p>
+<p>不过这些不同的客户端，API各不相同。而Spring也有对http的客户端进行封装，提供了工具类叫<strong>RestTemplate</strong>。 </p>
+<h2 id="Spring的RestTemplate"><a href="#Spring的RestTemplate" class="headerlink" title="Spring的RestTemplate"></a>Spring的RestTemplate</h2><p>Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和 反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持： HttpClient OkHttp JDK原生的URLConnection（默认的）</p>
+<p>下文会讲解RestTemplate的使用。</p>
+<h1 id="为什么学习SpringCloud"><a href="#为什么学习SpringCloud" class="headerlink" title="为什么学习SpringCloud"></a>为什么学习SpringCloud</h1><p>微服务是一种架构方式，终肯定需要技术架构去实施。</p>
+<blockquote>
+<p>微服务的实现方式很多，但是火的莫过于Spring Cloud了。为什么？</p>
+</blockquote>
+<ul>
+<li>后台硬：作为Spring家族的一员，有整个Spring全家桶靠山，背景十分强大。 </li>
+<li>技术强：Spring作为Java领域的前辈，可以说是功力深厚。有强力的技术团队支撑，一般人还真比不了</li>
+<li>群众基础好：可以说大多数程序员的成长都伴随着Spring框架，试问：现在有几家公司开发不用Spring？ Spring Cloud与Spring的各个框架无缝整合，对大家来说一切都是熟悉的配方，熟悉的味道。 </li>
+<li>使用方便：相信大家都体会到了SpringBoot给我们开发带来的便利，而Spring Cloud完全支持Spring Boot的开 发，用很少的配置就能完成微服务框架的搭建</li>
+</ul>
+<p>SpringCloud出现,对微服务技术提供了非常大的帮助，因为SpringCloud 提供了一套完整的微服务解决方案，不像其他框架只是解决了微服务中某个问题。</p>
+<ul>
+<li><p>服务治理: 阿里巴巴开源的Dubbo和当当网在其基础上扩展的Dubbox、Eureka、Apache 的Consul等</p>
+</li>
+<li><p>分布式配置中心: 百度的disconf、Netfix的Archaius、360的QConf、SpringCloud、携程的阿波罗等。</p>
+</li>
+<li><p>分布式任务:xxl-job、elastic-job、springcloud的task等。</p>
+</li>
+<li><p>服务跟踪:京东的hyra、springcloud的sleuth等</p>
+</li>
+</ul>
+<h1 id="SpringCloud简介"><a href="#SpringCloud简介" class="headerlink" title="SpringCloud简介"></a>SpringCloud简介</h1><blockquote>
+<p>简介</p>
+</blockquote>
+<p>Spring Cloud是Spring旗下的项目之一，官网地址：<a href="http://projects.spring.io/spring-cloud/" target="_blank" rel="noopener">http://projects.spring.io/spring-cloud/</a></p>
+<p>Spring擅长的就是集成，把世界上好的框架拿过来，集成到自己的项目中。 </p>
+<ul>
+<li><p>Spring Cloud也是一样，它将现在非常流行的一些技术整合到一起，实现了诸如：配置管理，服务发现，智能路由， 负载均衡，熔断器，控制总线，集群状态等功能；</p>
+</li>
+<li><p>协调分布式环境中各个系统，为各类服务提供模板性配置。</p>
+</li>
+<li><p>其主要 涉及的组件包括：Eureka：注册中心 Zuul、Gateway：服务网关 Ribbon：负载均衡 Feign：服务调用 Hystrix或Resilience4j：熔断器</p>
+</li>
+</ul>
+<p>以上只是其中一部分，架构图：</p>
+<p><img src="/" alt="" class="lazyload" data-src=".%5CSpringCloud(%E4%B8%8A)%5Cimage11.jpeg"></p>
+<blockquote>
+<p>版本</p>
+</blockquote>
+<p>Spring Cloud不是一个组件，而是许多组件的集合；它的版本命名比较特殊，是以A到Z的为首字母的一些单词（其 实是伦敦地铁站的名字）组成：</p>
+<p><img src="/" alt="" class="lazyload" data-src=".%5CSpringCloud(%E4%B8%8A)%5Cimage12.png"></p>
+<p>我们在项目中，使用新稳定的Greenwich版本(格林威治)</p>
+<h1 id="服务治理SpringCloud-Eureka"><a href="#服务治理SpringCloud-Eureka" class="headerlink" title="服务治理SpringCloud Eureka"></a>服务治理SpringCloud Eureka</h1><h2 id="什么是服务治理"><a href="#什么是服务治理" class="headerlink" title="什么是服务治理"></a>什么是服务治理</h2><p>在传统rpc远程调用中，服务与服务依赖关系，管理比较复杂，所以需要使用服务治理，管理服务与服务之间依赖关系，可以实现服务调用、负载均衡、容错等，实现服务发现与注册。</p>
+<h2 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h2><p> 在服务注册与发现中，有一个注册中心，当服务器启动的时候，会把当前自己服务器的信息 比如 服务地址通讯地址等以别名方式注册到注册中心上。</p>
+<p> 另一方（消费者|服务提供者），以该别名的方式去注册中心上获取到实际的服务通讯地址，让后在实现本地rpc调用远程。</p>
+<h1 id="工程搭建"><a href="#工程搭建" class="headerlink" title="工程搭建"></a>工程搭建</h1><h2 id="创建父maven工程"><a href="#创建父maven工程" class="headerlink" title="创建父maven工程"></a>创建父maven工程</h2><p>微服务中需要同时创建多个项目，为了方便课堂演示，先创建一个父工程，然后后续的工程都以这个工程为父，实现 maven的聚合。这样可以在一个窗口看到所有工程，方便讲解。在实际开发中，每个微服务可独立一个工程。</p>
+<p>src目录下不编写代码，可以将该目录删除</p>
+<blockquote>
+<p>依赖如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring-cloud.version</span>&gt;</span>Greenwich.SR1<span class="tag">&lt;/<span class="name">spring-cloud.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper.starter.version</span>&gt;</span>2.1.5<span class="tag">&lt;/<span class="name">mapper.starter.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mysql.version</span>&gt;</span>5.1.46<span class="tag">&lt;/<span class="name">mysql.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--spring cloud--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--通用mapper--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mapper.starter.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--MySQL驱动--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mysql.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建服务提供者"><a href="#创建服务提供者" class="headerlink" title="创建服务提供者"></a>创建服务提供者</h2><p>在父工程下新建子maven工程，名字叫user-service</p>
+<blockquote>
+<p>第一步引入依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第二步编写配置文件和导入数据</p>
+</blockquote>
+<p>主要配置tomcat端口号，数据库连接池，mybatis自动扫描pojo实体类</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">9001</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springcloud</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">type-aliases-package:</span> <span class="string">cn.itcast.user.pojo</span></span><br></pre></td></tr></table></figure>
+
+<p>导入sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="string">`springcloud`</span> ;</span><br><span class="line"><span class="keyword">USE</span> <span class="string">`springcloud`</span>;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`tb_user`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`tb_user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`user_name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'用户名'</span>,</span><br><span class="line">  <span class="string">`password`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'密码'</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'姓名'</span>,</span><br><span class="line">  <span class="string">`age`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span>,</span><br><span class="line">  <span class="string">`sex`</span> <span class="built_in">tinyint</span>(<span class="number">1</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'性别，1男性，2女性'</span>,</span><br><span class="line">  <span class="string">`birthday`</span> <span class="built_in">date</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'出生日期'</span>,</span><br><span class="line">  <span class="string">`note`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'备注'</span>,</span><br><span class="line">  <span class="string">`created`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line">  <span class="string">`updated`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</span><br><span class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="string">`username`</span> (<span class="string">`user_name`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">13</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Data for the table `tb_user` */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span>  <span class="keyword">into</span> <span class="string">`tb_user`</span>(<span class="string">`id`</span>,<span class="string">`user_name`</span>,<span class="string">`password`</span>,<span class="string">`name`</span>,<span class="string">`age`</span>,<span class="string">`sex`</span>,<span class="string">`birthday`</span>,<span class="string">`note`</span>,<span class="string">`created`</span>,<span class="string">`updated`</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'zhangsan'</span>,<span class="string">'123456'</span>,<span class="string">'张三'</span>,<span class="number">30</span>,<span class="number">1</span>,<span class="string">'1964-08-08'</span>,<span class="string">'张三同学在学Java'</span>,<span class="string">'2014-09-19 16:56:04'</span>,<span class="string">'2014-09-21 11:24:59'</span>),(<span class="number">2</span>,<span class="string">'lisi'</span>,<span class="string">'123456'</span>,<span class="string">'李四'</span>,<span class="number">21</span>,<span class="number">2</span>,<span class="string">'1995-01-01'</span>,<span class="string">'李四同学在传智学Java'</span>,<span class="string">'2014-09-19 16:56:04'</span>,<span class="string">'2014-09-19 16:56:04'</span>),(<span class="number">3</span>,<span class="string">'wangwu'</span>,<span class="string">'123456'</span>,<span class="string">'王五'</span>,<span class="number">22</span>,<span class="number">2</span>,<span class="string">'1994-01-01'</span>,<span class="string">'王五同学在学php'</span>,<span class="string">'2014-09-19 16:56:04'</span>,<span class="string">'2014-09-19 16:56:04'</span>),(<span class="number">4</span>,<span class="string">'zhangliu'</span>,<span class="string">'123456'</span>,<span class="string">'张六'</span>,<span class="number">20</span>,<span class="number">1</span>,<span class="string">'1996-09-01'</span>,<span class="string">'张六同学在传智播客学Java'</span>,<span class="string">'2014-09-19 16:56:04'</span>,<span class="string">'2014-09-19 16:56:04'</span>),(<span class="number">5</span>,<span class="string">'lina'</span>,<span class="string">'123456'</span>,<span class="string">'李娜'</span>,<span class="number">28</span>,<span class="number">1</span>,<span class="string">'1988-01-01'</span>,<span class="string">'李娜同学在传智播客学Java'</span>,<span class="string">'2014-09-19 16:56:04'</span>,<span class="string">'2014-09-19 16:56:04'</span>),(<span class="number">6</span>,<span class="string">'lilei'</span>,<span class="string">'123456'</span>,<span class="string">'李雷'</span>,<span class="number">23</span>,<span class="number">1</span>,<span class="string">'1993-08-08'</span>,<span class="string">'李雷同学在传智播客学Java'</span>,<span class="string">'2014-09-20 11:41:15'</span>,<span class="string">'2014-09-20 11:41:15'</span>),(<span class="number">7</span>,<span class="string">'hanmeimei'</span>,<span class="string">'123456'</span>,<span class="string">'韩梅梅'</span>,<span class="number">24</span>,<span class="number">2</span>,<span class="string">'1992-08-08'</span>,<span class="string">'韩梅梅同学在传智播客学php'</span>,<span class="string">'2014-09-20 11:41:15'</span>,<span class="string">'2014-09-20 11:41:15'</span>),(<span class="number">8</span>,<span class="string">'itcast'</span>,<span class="string">'123456'</span>,<span class="string">'传智播客'</span>,<span class="number">21</span>,<span class="number">2</span>,<span class="string">'2008-07-08'</span>,<span class="string">'传智播客搞IT教育'</span>,<span class="string">'2014-09-20 11:41:15'</span>,<span class="string">'2014-09-20 11:41:15'</span>),(<span class="number">9</span>,<span class="string">'heima'</span>,<span class="string">'123456'</span>,<span class="string">'黑马'</span>,<span class="number">18</span>,<span class="number">2</span>,<span class="string">'2012-08-08'</span>,<span class="string">'黑马是传智播客高端品牌'</span>,<span class="string">'2014-09-20 11:41:15'</span>,<span class="string">'2014-09-20 11:41:15'</span>),(<span class="number">10</span>,<span class="string">'linus'</span>,<span class="string">'123456'</span>,<span class="string">'林纳斯'</span>,<span class="number">45</span>,<span class="number">2</span>,<span class="string">'1971-08-08'</span>,<span class="string">'林纳斯搞了linux又搞git'</span>,<span class="string">'2014-09-20 11:41:15'</span>,<span class="string">'2014-09-20 11:41:15'</span>),(<span class="number">11</span>,<span class="string">'leijun'</span>,<span class="string">'123456'</span>,<span class="string">'雷布斯'</span>,<span class="number">33</span>,<span class="number">2</span>,<span class="string">'1983-08-08'</span>,<span class="string">'小爱同学；are you ok'</span>,<span class="string">'2014-09-20 11:41:15'</span>,<span class="string">'2014-09-20 11:41:15'</span>),(<span class="number">12</span>,<span class="string">'madaye'</span>,<span class="string">'123456'</span>,<span class="string">'马大爷'</span>,<span class="number">46</span>,<span class="number">2</span>,<span class="string">'1980-08-08'</span>,<span class="string">'马大爷花呗可以不还吗'</span>,<span class="string">'2014-09-20 11:41:15'</span>,<span class="string">'2014-09-20 11:41:15'</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>第三步编写pojo实体类</p>
+</blockquote>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">haoyongliang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://haoyongliang.gitee.io/2020/03/23/SpringCloud/SpringCloud(%E4%B8%8A)/">https://haoyongliang.gitee.io/2020/03/23/SpringCloud/SpringCloud(%E4%B8%8A)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haoyongliang.gitee.io" target="_blank">郝永亮的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SpringCloud/">SpringCloud    </a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/haoyongliang/resources/raw/master/images/%E9%9D%A2%E8%AF%95%E9%A2%98/web%E6%A0%B8%E5%BF%83/top.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2020/03/18/%E9%9D%A2%E8%AF%95%E9%A2%98/web%E6%A0%B8%E5%BF%83%E9%9D%A2%E8%AF%95%E9%A2%98/"><img class="next_cover lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E9%9D%A2%E8%AF%95%E9%A2%98/web%E6%A0%B8%E5%BF%83/top.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">web核心面试题</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/12/19/SpringCloud/SpringCloud-Security/" title="微服务安全框架SpringSecurity"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/SpringCloud/SpringCloud-Security/top.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-12-19</div><div class="relatedPosts_title">微服务安全框架SpringSecurity</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTI3Ni8yMTc4OQ=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></article></main><footer id="footer" style="background-image: url(https://gitee.com/haoyongliang/resources/raw/master/images/SpringCloud/SpringCloud-Security/top.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By haoyongliang</div><div class="framework-info"></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
