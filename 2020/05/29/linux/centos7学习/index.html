@@ -686,8 +686,8 @@ function activateLightMode(){
 <p>语法</p>
 </blockquote>
 <p>ln -s 目标文件路径 快捷方式路径</p>
-<p><strong>目标文件路径必须使用绝对路径</strong> </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> Ln -s /etc/a.txt a.txt.link //把etc下面的a.txt放到当前目录下，快捷名叫a.txt.link</span></span><br></pre></td></tr></table></figure>
+<p><strong>目标文件路径必须使用绝对路径，或者相对于快捷方式所在路径</strong> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ln -s /etc/a.txt a.txt.link //把etc下面的a.txt放到当前目录下，快捷名叫a.txt.link</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="搜索查找find"><a href="#搜索查找find" class="headerlink" title="搜索查找find"></a>搜索查找find</h1><p>find . -name “*.txt”                  查找当前目录及其子目录下所有后缀名名是txt的文件</p>
 <p>find . -ctime -1                       查找当前目录及其子目录下所有最近 1天内更新过的文件</p>
