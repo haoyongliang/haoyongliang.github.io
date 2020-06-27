@@ -181,6 +181,10 @@ function activateLightMode(){
 </li>
 </ul>
 <blockquote>
+<p>下图是简易版步骤图</p>
+</blockquote>
+<p><img src="/" alt="1593181917458" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/springmvc/day03.assets/1593181917458.png"></p>
+<blockquote>
 <p>第一步：定义了两个组，一个是注册的时候校验，一个是修改的时候校验</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.group;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RegGroup</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -209,10 +213,6 @@ function activateLightMode(){
 <p><img src="/" alt="1593226827447" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/springmvc/day03.assets/1593226827447.png"></p>
 <p>修改：没有校验帐号</p>
 <p><img src="/" alt="1593226807450" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/springmvc/day03.assets/1593226807450.png"></p>
-<blockquote>
-<p>下图是原理图，和上面的代码并不匹配，是一个简易版</p>
-</blockquote>
-<p><img src="/" alt="1593181917458" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/springmvc/day03.assets/1593181917458.png"></p>
 <h1 id="2-ssm整合"><a href="#2-ssm整合" class="headerlink" title="2 ssm整合"></a>2 ssm整合</h1><h2 id="2-1-整合流程简介"><a href="#2-1-整合流程简介" class="headerlink" title="2.1 整合流程简介"></a>2.1 整合流程简介</h2><p>首先要明白Spring管理service,dao层，controller由springmvc管理</p>
 <p>1.配置Spring的applicationContext.xml</p>
 <p>​    1.1开启包扫描，不扫描controller层</p>
