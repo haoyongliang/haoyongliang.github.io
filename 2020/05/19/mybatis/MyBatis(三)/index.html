@@ -186,7 +186,7 @@ function activateLightMode(){
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Insert(&quot;insert into student (name,age) values(&#39;$&#123;name&#125;&#39;,$&#123;age&#125;)&quot;)</span><br><span class="line">@Insert(&quot;insert into student (name,age) values(#&#123;name&#125;,#&#123;age&#125;)&quot;)</span><br></pre></td></tr></table></figure>
 
 <p>$底层使用Statement,最终会拼接出一个完整的SQL, insert into student (name,age) values(‘严朝阳’,12) </p>
-<p>#底层使用PrepareStatement ，最终拼接的SQL带占位符insert into student (name,age) values(‘严朝阳’,12) </p>
+<p>#底层使用PrepareStatement ，最终拼接的SQL带占位符insert into student (name,age) values(?,?) </p>
 <p>PrepareStatement 效率高，防止SQL注入，书写更加方便。</p>
 <h1 id="使用注解多表查询"><a href="#使用注解多表查询" class="headerlink" title="使用注解多表查询"></a>使用注解多表查询</h1><h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><h3 id="表关系"><a href="#表关系" class="headerlink" title="表关系"></a>表关系</h3><p>一对一关系中，表关系由任意一方维护，以人和身份证为例，一个人对应一个身份证，一个身份证对应一个人。本案例中由身份证表维护表关系</p>
 <img src="/" alt="1589801843745" style="zoom:80%;" / class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/mybatis/day02/1589801843745.png">
