@@ -351,9 +351,10 @@ function activateLightMode(){
 <li>串行化 </li>
 </ol>
 <p>mysql默认的是Repeatable</p>
-<h2 id="事物的传播行为有哪些"><a href="#事物的传播行为有哪些" class="headerlink" title="事物的传播行为有哪些"></a>事物的传播行为有哪些</h2><p>REQUIRED:如果存在一个事务，则支持当前事务。如果没有事务则开启一个新的事务。</p>
+<h2 id="事物的传播行为有哪些"><a href="#事物的传播行为有哪些" class="headerlink" title="事物的传播行为有哪些"></a>事物的传播行为有哪些</h2><p>默认是REQUIRED</p>
+<p><strong>REQUIRED</strong>:如果存在一个事务，则支持当前事务。如果没有事务则开启一个新的事务。</p>
 <p>REQUIRES_NEW：它会开启一个新的事务。如果一个事务已经存在，则先将这个存在的事务挂起。</p>
-<p>SUPPORTS:如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。</p>
+<p><strong>SUPPORTS</strong>:如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。</p>
 <p>NOT_SUPPORTED:总是非事务地执行，并挂起任何存在的事务。</p>
 <p>MANDATORY:如果已经存在一个事务，支持当前事务。如果没有一个活动的事务，则抛出异常。</p>
 <p>NEVER:总是非事务地执行，如果存在一个活动事务，则抛出异常。</p>
