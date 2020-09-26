@@ -350,7 +350,7 @@ function activateLightMode(){
 <li>幻读 读取已经提交的数据，读取的时候允许别的事物增删，导致两次读取到的数据个数不一样</li>
 <li>串行化 </li>
 </ol>
-<p>mysql默认的是幻读</p>
+<p>mysql默认的是Repeatable</p>
 <h2 id="事物的传播行为有哪些"><a href="#事物的传播行为有哪些" class="headerlink" title="事物的传播行为有哪些"></a>事物的传播行为有哪些</h2><p>REQUIRED:如果存在一个事务，则支持当前事务。如果没有事务则开启一个新的事务。</p>
 <p>REQUIRES_NEW：它会开启一个新的事务。如果一个事务已经存在，则先将这个存在的事务挂起。</p>
 <p>SUPPORTS:如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。</p>
