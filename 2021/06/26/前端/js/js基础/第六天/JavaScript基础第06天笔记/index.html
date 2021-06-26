@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS基础第六天 | 公告：haoyongliang.gitee.io暂停访问，正式访问时间待定。</title><meta name="description" content="JS基础第六天"><meta name="keywords" content="js"><meta name="author" content="公众号：亮哥聊前端"><meta name="copyright" content="公众号：亮哥聊前端"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="JS基础第六天"><meta name="twitter:description" content="JS基础第六天"><meta name="twitter:image" content="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg"><meta property="og:type" content="article"><meta property="og:title" content="JS基础第六天"><meta property="og:url" content="https://haoyongliang.github.io/2021/06/26/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E5%A4%A9/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC06%E5%A4%A9%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="公告：haoyongliang.gitee.io暂停访问，正式访问时间待定。"><meta property="og:description" content="JS基础第六天"><meta property="og:image" content="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      now = new Date();
+      hour = now.getHours();
+      isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="https://haoyongliang.github.io/2021/06/26/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E5%A4%A9/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC06%E5%A4%A9%E7%AC%94%E8%AE%B0/"><link rel="next" title="JS基础第五天(作用域和预解析)" href="https://haoyongliang.github.io/2021/06/25/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E5%A4%A9/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC05%E5%A4%A9%E7%AC%94%E8%AE%B0/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: false,
+  isFontAwesomeV5: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/haoyongliang/resources/raw/master/images/gitee/hexo-gitee%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">91</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">37</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__pro">gress<span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内置对象概述"><span class="toc-number">1.</span> <span class="toc-text">内置对象概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查文档"><span class="toc-number">2.</span> <span class="toc-text">查文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Math对象"><span class="toc-number">3.</span> <span class="toc-text">Math对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#日期对象"><span class="toc-number">4.</span> <span class="toc-text">日期对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组对象"><span class="toc-number">5.</span> <span class="toc-text">数组对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建数组的两种方式"><span class="toc-number">5.1.</span> <span class="toc-text">创建数组的两种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测是否为数组"><span class="toc-number">5.2.</span> <span class="toc-text">检测是否为数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加删除数组元素的方法"><span class="toc-number">5.3.</span> <span class="toc-text">添加删除数组元素的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组排序"><span class="toc-number">5.4.</span> <span class="toc-text">数组排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组索引方法"><span class="toc-number">5.5.</span> <span class="toc-text">数组索引方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组转换为字符串"><span class="toc-number">5.6.</span> <span class="toc-text">数组转换为字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他方法"><span class="toc-number">5.7.</span> <span class="toc-text">其他方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串对象"><span class="toc-number">6.</span> <span class="toc-text">字符串对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本包装类型"><span class="toc-number">6.1.</span> <span class="toc-text">基本包装类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的不可变"><span class="toc-number">6.2.</span> <span class="toc-text">字符串的不可变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据字符返回位置"><span class="toc-number">6.3.</span> <span class="toc-text">根据字符返回位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据位置返回字符"><span class="toc-number">6.4.</span> <span class="toc-text">根据位置返回字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串操作方法"><span class="toc-number">6.5.</span> <span class="toc-text">字符串操作方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简单数据类型和复杂数据类型"><span class="toc-number">7.</span> <span class="toc-text">简单数据类型和复杂数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单数据类型"><span class="toc-number">7.1.</span> <span class="toc-text">简单数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂数据类型"><span class="toc-number">7.2.</span> <span class="toc-text">复杂数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆栈"><span class="toc-number">7.3.</span> <span class="toc-text">堆栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单类型传参"><span class="toc-number">7.4.</span> <span class="toc-text">简单类型传参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂数据类型传参"><span class="toc-number">7.5.</span> <span class="toc-text">复杂数据类型传参</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">公告：haoyongliang.gitee.io暂停访问，正式访问时间待定。</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">JS基础第六天</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2021-06-26<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2021-06-26</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><blockquote>
+<p>本章介绍JS内置对象，包括Math，日期，数组，字符串，简单类型和复杂类型传参问题</p>
+</blockquote>
+<h1 id="内置对象概述"><a href="#内置对象概述" class="headerlink" title="内置对象概述"></a>内置对象概述</h1><p>JavaScript 中的对象分为3种：<strong>自定义对象 、内置对象、 浏览器对象</strong><br>前面两种对象是JS 基础 内容，属于 ECMAScript；  第三个浏览器对象属于 JS 独有的， JS API 讲解内置对象就是指 JS 语言自带的一些对象，这些对象供开发者使用，并提供了一些常用的或是<strong>最基本而必要的功能</strong>（属性和方法），内置对象最大的优点就是帮助我们快速开发</p>
+<p>JavaScript 提供了多个内置对象：Math、 Date 、Array、String等    </p>
+<h1 id="查文档"><a href="#查文档" class="headerlink" title="查文档"></a>查文档</h1><p>查找文档：学习一个内置对象的使用，只要学会其常用成员的使用即可，我们可以通过查文档学习，可以通过MDN/W3C来查询。<br>​Mozilla 开发者网络（MDN）提供了有关开放网络技术（Open Web）的信息，包括 HTML、CSS 和万维网及 HTML5 应用的 API。<br>MDN:<a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/</a></p>
+<h1 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h1><p>Math 对象不是构造函数，它具有数学常数和函数的属性和方法。跟数学相关的运算（求绝对值，取整、最大值等）可以使用 Math 中的成员。</p>
+<table>
+<thead>
+<tr>
+<th>属性、方法名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Math.PI</td>
+<td>圆周率</td>
+</tr>
+<tr>
+<td>Math.floor()</td>
+<td>向下取整</td>
+</tr>
+<tr>
+<td>Math.ceil()</td>
+<td>向上取整</td>
+</tr>
+<tr>
+<td>Math.round()</td>
+<td>四舍五入版 就近取整   注意 -3.5   结果是  -3</td>
+</tr>
+<tr>
+<td>Math.abs()</td>
+<td>绝对值</td>
+</tr>
+<tr>
+<td>Math.max()/Math.min()</td>
+<td>求最大和最小值</td>
+</tr>
+<tr>
+<td>Math.random()</td>
+<td>获取范围在[0,1)内的随机值</td>
+</tr>
+</tbody></table>
+<p>注意：上面的方法使用时必须带括号</p>
+<p><strong>获取指定范围内的随机整数</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandom</span>(<span class="params">min, max</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (max - min + <span class="number">1</span>)) + min; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="日期对象"><a href="#日期对象" class="headerlink" title="日期对象"></a>日期对象</h1><p>Date 对象和 Math 对象不一样，Date是一个构造函数，所以使用时需要实例化后才能使用其中具体方法和属性。Date 实例用来处理日期和时间</p>
+<blockquote>
+<p>使用Date实例化日期对象</p>
+</blockquote>
+<p>获取当前时间必须实例化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br></pre></td></tr></table></figure>
+
+<p>获取指定时间的日期对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> future = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2019/5/1'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果创建实例时并未传入参数，则得到的日期对象是当前时间对应的日期对象</p>
+<blockquote>
+<p>使用Date实例的方法和属性    </p>
+</blockquote>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%871.png"></p>
+<blockquote>
+<p>通过Date实例获取总毫米数</p>
+</blockquote>
+<p>总毫秒数的含义</p>
+<p>基于1970年1月1日（世界标准时间）起的毫秒数</p>
+<p>获取总毫秒数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化Date对象</span></span><br><span class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="comment">// 1. 用于获取对象的原始值</span></span><br><span class="line"><span class="built_in">console</span>.log(date.valueOf())	</span><br><span class="line"><span class="built_in">console</span>.log(date.getTime())	</span><br><span class="line"><span class="comment">// 2. 简单写可以这么做</span></span><br><span class="line"><span class="keyword">var</span> now = + <span class="keyword">new</span> <span class="built_in">Date</span>();			</span><br><span class="line"><span class="comment">// 3. HTML5中提供的方法，有兼容性问题</span></span><br><span class="line"><span class="keyword">var</span> now = <span class="built_in">Date</span>.now();</span><br></pre></td></tr></table></figure>
+
+<h1 id="数组对象"><a href="#数组对象" class="headerlink" title="数组对象"></a>数组对象</h1><h2 id="创建数组的两种方式"><a href="#创建数组的两种方式" class="headerlink" title="创建数组的两种方式"></a>创建数组的两种方式</h2><blockquote>
+<p>1.字面量方式</p>
+</blockquote>
+<p>示例代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="string">"test"</span>,<span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 2.new Array()</p>
+</blockquote>
+<p>示例代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr &#x3D; new Array();</span><br></pre></td></tr></table></figure>
+
+<p>注意：上面代码中arr创建出的是一个空数组，如果需要使用构造函数Array创建非空数组，可以在创建数组时传入参数</p>
+<p>参数传递规则如下：</p>
+<p>如果只传入一个参数，则参数规定了数组的长度</p>
+<p>如果传入了多个参数，则参数称为数组的元素</p>
+<h2 id="检测是否为数组"><a href="#检测是否为数组" class="headerlink" title="检测是否为数组"></a>检测是否为数组</h2><blockquote>
+<p>instanceof 运算符</p>
+</blockquote>
+<p>instanceof 可以判断一个对象是否是某个构造函数的实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">23</span>];</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Array.isArray()</p>
+</blockquote>
+<p>Array.isArray()用于判断一个对象是否为数组，isArray() 是 HTML5 中提供的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">23</span>];</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(arr));   <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(obj));   <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加删除数组元素的方法"><a href="#添加删除数组元素的方法" class="headerlink" title="添加删除数组元素的方法"></a>添加删除数组元素的方法</h2><p>数组中有进行增加、删除元素的方法，部分方法如下表</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%872.png"></p>
+<p>注意：push、unshift为增加元素方法；pop、shift为删除元素的方法</p>
+<h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><p>数组中有对数组本身排序的方法，部分方法如下表</p>
+<img src="/" style="zoom:80%;" / class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%873.png">
+
+<p>注意：sort方法需要传入参数来设置升序、降序排序</p>
+<ul>
+<li>如果传入“function(a,b){ return a-b;}”，则为升序</li>
+<li>如果传入“function(a,b){ return b-a;}”，则为降序</li>
+</ul>
+<h2 id="数组索引方法"><a href="#数组索引方法" class="headerlink" title="数组索引方法"></a>数组索引方法</h2><p>数组中有获取数组指定元素索引值的方法，部分方法如下表</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%874.png"></p>
+<h2 id="数组转换为字符串"><a href="#数组转换为字符串" class="headerlink" title="数组转换为字符串"></a>数组转换为字符串</h2><p>数组中有把数组转化为字符串的方法，部分方法如下表</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%875.png"></p>
+<p>注意：join方法如果不传入参数，则按照 “ , ”拼接元素</p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>数组中还有其他操作方法，同学们可以在课下自行查阅学习</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%876.png"></p>
+<h1 id="字符串对象"><a href="#字符串对象" class="headerlink" title="字符串对象"></a>字符串对象</h1><h2 id="基本包装类型"><a href="#基本包装类型" class="headerlink" title="基本包装类型"></a>基本包装类型</h2><p>为了方便操作基本数据类型，JavaScript 还提供了三个特殊的引用类型：String、Number和 Boolean。</p>
+<p>基本包装类型就是把简单数据类型包装成为复杂数据类型，这样基本数据类型就有了属性和方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面代码有什么问题？</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'andy'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.length);</span><br></pre></td></tr></table></figure>
+
+<p>按道理基本数据类型是没有属性和方法的，而对象才有属性和方法，但上面代码却可以执行，这是因为</p>
+<p>js 会把基本数据类型包装为复杂数据类型，其执行过程如下 ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 生成临时变量，把简单类型包装为复杂数据类型</span></span><br><span class="line"><span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'andy'</span>);</span><br><span class="line"><span class="comment">// 2. 赋值给我们声明的字符变量</span></span><br><span class="line">str = temp;</span><br><span class="line"><span class="comment">// 3. 销毁临时变量</span></span><br><span class="line">temp = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串的不可变"><a href="#字符串的不可变" class="headerlink" title="字符串的不可变"></a>字符串的不可变</h2><p>指的是里面的值不可变，虽然看上去可以改变内容，但其实是地址变了，内存中新开辟了一个内存空间。</p>
+<p>当重新给字符串变量赋值的时候，变量之前保存的字符串不会被修改，依然在内存中重新给字符串赋值，会重新在内存中开辟空间，这个特点就是字符串的不可变。<br>由于字符串的不可变，在<strong>大量拼接字符串</strong>的时候会有效率问题</p>
+<h2 id="根据字符返回位置"><a href="#根据字符返回位置" class="headerlink" title="根据字符返回位置"></a>根据字符返回位置</h2><p>字符串通过基本包装类型可以调用部分方法来操作字符串，以下是返回指定字符的位置的方法：</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%877.png"></p>
+<p>案例：查找字符串”abcoefoxyozzopp”中所有o出现的位置以及次数</p>
+<ol>
+<li>先查找第一个o出现的位置</li>
+<li>然后 只要indexOf 返回的结果不是 -1 就继续往后查找</li>
+<li>因为indexOf 只能查找到第一个，所以后面的查找，利用第二个参数，当前索引加1，从而继续查找     </li>
+</ol>
+<h2 id="根据位置返回字符"><a href="#根据位置返回字符" class="headerlink" title="根据位置返回字符"></a>根据位置返回字符</h2><p>字符串通过基本包装类型可以调用部分方法来操作字符串，以下是根据位置返回指定位置上的字符：</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%878.png"></p>
+<p>在上述方法中，charCodeAt方法返回的是指定位置上字符对应的ASCII码，ASCII码对照表如下：</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%879.png"></p>
+<p>案例：判断一个字符串 ‘abcoefoxyozzopp’ 中出现次数最多的字符，并统计其次数</p>
+<ol>
+<li><p>核心算法：利用 charAt(） 遍历这个字符串</p>
+</li>
+<li><p>把每个字符都存储给对象， 如果对象没有该属性，就为1，如果存在了就 +1</p>
+</li>
+<li><p>遍历对象，得到最大值和该字符     </p>
+<p>​    注意：在遍历的过程中，把字符串中的每个字符作为对象的属性存储在对象总，对应的属性值是该字符出现的次数</p>
+</li>
+</ol>
+<h2 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h2><p>字符串通过基本包装类型可以调用部分方法来操作字符串，以下是部分操作方法：</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%8710.png"></p>
+<blockquote>
+<p>replace()方法</p>
+</blockquote>
+<p>replace() 方法用于在字符串中用一些字符替换另一些字符，其使用格式如下：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符串.replace(被替换的字符串， 要替换为的字符串)；</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>split()方法</p>
+</blockquote>
+<p>split()方法用于切分字符串，它可以将字符串切分为数组。在切分完毕之后，返回的是一个新数组。</p>
+<p>其使用格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符串.split(&quot;分割字符&quot;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="简单数据类型和复杂数据类型"><a href="#简单数据类型和复杂数据类型" class="headerlink" title="简单数据类型和复杂数据类型"></a>简单数据类型和复杂数据类型</h1><h2 id="简单数据类型"><a href="#简单数据类型" class="headerlink" title="简单数据类型"></a>简单数据类型</h2><p><strong>简单类型</strong>（<strong>基本数据类型</strong>、<strong>值类型</strong>）：在存储时变量中存储的是值本身，包括string ，number，boolean，undefined，null</p>
+<h2 id="复杂数据类型"><a href="#复杂数据类型" class="headerlink" title="复杂数据类型"></a>复杂数据类型</h2><p><strong>复杂数据类型（引用类型）</strong>：在存储时变量中存储的仅仅是地址（引用），通过 new 关键字创建的对象（系统对象、自定义对象），如 Object、Array、Date等；</p>
+<h2 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h2><p>堆栈空间分配区别：</p>
+<p>1、栈（操作系统）：由操作系统自动分配释放存放函数的参数值、局部变量的值等。其操作方式类似于数据结构中的栈；</p>
+<p>简单数据类型存放到栈里面</p>
+<p>2、堆（操作系统）：存储复杂类型(对象)，一般由程序员分配释放，若程序员不释放，由垃圾回收机制回收。</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%8711.png"></p>
+<blockquote>
+<p>简单数据类型的存储方式</p>
+</blockquote>
+<p>值类型变量的数据直接存放在变量（栈空间）中</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%8712.png"></p>
+<blockquote>
+<p>复杂数据类型的存储方式</p>
+</blockquote>
+<p>引用类型变量（栈空间）里存放的是地址，真正的对象实例存放在堆空间中</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%8713.png"></p>
+<h2 id="简单类型传参"><a href="#简单类型传参" class="headerlink" title="简单类型传参"></a>简单类型传参</h2><p>函数的形参也可以看做是一个变量，当我们把一个值类型变量作为参数传给函数的形参时，其实是把变量在栈空间里的值复制了一份给形参，那么在方法内部对形参做任何修改，都不会影响到的外部变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    a++;</span><br><span class="line">    <span class="built_in">console</span>.log(a); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line">fn(x);</span><br><span class="line"><span class="built_in">console</span>.log(x)；</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%8714.png"></p>
+<h2 id="复杂数据类型传参"><a href="#复杂数据类型传参" class="headerlink" title="复杂数据类型传参"></a>复杂数据类型传参</h2><p>函数的形参也可以看做是一个变量，当我们把引用类型变量传给形参时，其实是把变量在栈空间里保存的堆地址复制给了形参，形参和实参其实保存的是同一个堆地址，所以操作的是同一个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">x</span>) </span>&#123; <span class="comment">// x = p</span></span><br><span class="line">    <span class="built_in">console</span>.log(x.name); <span class="comment">// 2. 这个输出什么 ?    </span></span><br><span class="line">    x.name = <span class="string">"张学友"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x.name); <span class="comment">// 3. 这个输出什么 ?    </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">"刘德华"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(p.name);    <span class="comment">// 1. 这个输出什么 ?   </span></span><br><span class="line">f1(p);</span><br><span class="line"><span class="built_in">console</span>.log(p.name);    <span class="comment">// 4. 这个输出什么 ?</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%85%AD%E5%A4%A9/images/%E5%9B%BE%E7%89%8715.png"></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">公众号：亮哥聊前端</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://haoyongliang.github.io/2021/06/26/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E5%A4%A9/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC06%E5%A4%A9%E7%AC%94%E8%AE%B0/">https://haoyongliang.github.io/2021/06/26/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E5%A4%A9/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC06%E5%A4%A9%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haoyongliang.github.io" target="_blank">公告：haoyongliang.gitee.io暂停访问，正式访问时间待定。</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/js/">js    </a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="https://gitee.com/haoyongliang/resources/raw/master/images/wx_qr_code.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="https://gitee.com/haoyongliang/resources/raw/master/images/zfb_qr_code.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2021/06/25/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E5%A4%A9/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC05%E5%A4%A9%E7%AC%94%E8%AE%B0/"><img class="next_cover lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JS基础第五天(作用域和预解析)</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/06/19/前端/js/js基础/第一天/JavaScript基础第01天笔记/" title="JS基础第一天"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-06-19</div><div class="relatedPosts_title">JS基础第一天</div></div></a></div><div class="relatedPosts_item"><a href="/2021/06/20/前端/js/js基础/第二天/JavaScript基础第02天笔记/" title="JS基础第二天"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-06-20</div><div class="relatedPosts_title">JS基础第二天</div></div></a></div><div class="relatedPosts_item"><a href="/2021/06/22/前端/js/js基础/第三天/JavaScript基础第03天笔记/" title="JS基础第三天"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-06-22</div><div class="relatedPosts_title">JS基础第三天</div></div></a></div><div class="relatedPosts_item"><a href="/2021/06/23/前端/js/js基础/第四天/JavaScript基础第04天笔记/" title="JS基础第四天"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-06-23</div><div class="relatedPosts_title">JS基础第四天</div></div></a></div><div class="relatedPosts_item"><a href="/2021/06/25/前端/js/js基础/第五天/JavaScript基础第05天笔记/" title="JS基础第五天(作用域和预解析)"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-06-25</div><div class="relatedPosts_title">JS基础第五天(作用域和预解析)</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTI3Ni8yMTc4OQ=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></article></main><footer id="footer" style="background-image: url(https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/js/js%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/images/es.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 公众号：亮哥聊前端</div><div class="framework-info"></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
