@@ -344,7 +344,7 @@ function activateLightMode(){
 
 </li>
 </ol>
-<p><a href="https://haoyongliang.gitee.io/2020/12/01/%E5%B7%A5%E5%85%B7/Cron%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank" rel="noopener">点击查看Cron表达式文章</a></p>
+<p><a href="https://haoyongliang.gitee.io/2020/12/01/%E5%B7%A5%E5%85%B7/Cron%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%A1%A8%E8%BE%BE%E5%BC%8F/">点击查看Cron表达式文章</a></p>
 <h1 id="发布静态资源root-和-alias-的区别"><a href="#发布静态资源root-和-alias-的区别" class="headerlink" title="发布静态资源root 和 alias 的区别"></a>发布静态资源root 和 alias 的区别</h1><p>在 Location 或者其他 Nginx 配置中会经常看到 <code>root</code> 和 <code>alias</code> ，开始我以为这两者是能够混用的，但其实两者有着很大的区别。<code>root</code> 指令会将 location 中的部分附加到 root 定义的末尾形成一个完整的路径；而 <code>alias</code> 则不会包含 location 中定义的部分。 假设我的静态资源存放位置/home/baidu目录下,想要访问有两种方式。 </p>
 <blockquote>
 <p>方式1：使用root 路劲完全匹配访问</p>
