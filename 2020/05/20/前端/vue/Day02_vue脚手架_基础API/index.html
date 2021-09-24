@@ -1,0 +1,529 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vue2.5-01 | 郝永亮的主页</title><meta name="description" content="Vue2.5-01"><meta name="keywords" content="vue"><meta name="author" content="微信：hao_yongliang"><meta name="copyright" content="微信：hao_yongliang"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Vue2.5-01"><meta name="twitter:description" content="Vue2.5-01"><meta name="twitter:image" content="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Vue2.5-01"><meta property="og:url" content="https://haoyongliang.gitee.io/2020/05/20/%E5%89%8D%E7%AB%AF/vue/Day02_vue%E8%84%9A%E6%89%8B%E6%9E%B6_%E5%9F%BA%E7%A1%80API/"><meta property="og:site_name" content="郝永亮的主页"><meta property="og:description" content="Vue2.5-01"><meta property="og:image" content="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      now = new Date();
+      hour = now.getHours();
+      isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="https://haoyongliang.gitee.io/2020/05/20/%E5%89%8D%E7%AB%AF/vue/Day02_vue%E8%84%9A%E6%89%8B%E6%9E%B6_%E5%9F%BA%E7%A1%80API/"><link rel="prev" title="Vue2.5-02" href="https://haoyongliang.gitee.io/2020/05/20/%E5%89%8D%E7%AB%AF/vue/Day03_%E5%9F%BA%E7%A1%80API_%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7_%E8%BF%87%E6%BB%A4%E5%99%A8_%E4%BE%A6%E5%90%AC%E5%99%A8_%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E6%A1%88%E4%BE%8B/"><link rel="next" title="Vue2.X(基本语法与elementUI组件介绍)" href="https://haoyongliang.gitee.io/2020/05/20/%E5%89%8D%E7%AB%AF/Vue2.X(%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E4%B8%8EelementUI%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: false,
+  isFontAwesomeV5: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/haoyongliang/resources/raw/master/images/gitee/hexo-gitee%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">98</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">38</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__pro">gress<span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue基本概念"><span class="toc-number">1.</span> <span class="toc-text">Vue基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为何学Vue"><span class="toc-number">1.1.</span> <span class="toc-text">为何学Vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue是什么"><span class="toc-number">1.2.</span> <span class="toc-text">Vue是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是渐进式"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么是渐进式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是库和框架"><span class="toc-number">1.2.2.</span> <span class="toc-text">什么是库和框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue学习的方式"><span class="toc-number">1.3.</span> <span class="toc-text">Vue学习的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue如何学"><span class="toc-number">1.3.1.</span> <span class="toc-text">Vue如何学</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vue-cli脚手架"><span class="toc-number">2.</span> <span class="toc-text">@vue&#x2F;cli脚手架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli-脚手架介绍"><span class="toc-number">2.1.</span> <span class="toc-text">@vue&#x2F;cli 脚手架介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-cli的好处"><span class="toc-number">2.1.1.</span> <span class="toc-text">@vue&#x2F;cli的好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli安装"><span class="toc-number">2.2.</span> <span class="toc-text">@vue&#x2F;cli安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli-创建项目启动服务"><span class="toc-number">2.3.</span> <span class="toc-text">@vue&#x2F;cli 创建项目启动服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli-目录和代码分析"><span class="toc-number">2.4.</span> <span class="toc-text">@vue&#x2F;cli 目录和代码分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli-项目架构了解"><span class="toc-number">2.5.</span> <span class="toc-text">@vue&#x2F;cli 项目架构了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli-自定义配置"><span class="toc-number">2.6.</span> <span class="toc-text">@vue&#x2F;cli 自定义配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint了解"><span class="toc-number">2.7.</span> <span class="toc-text">eslint了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli-单vue文件讲解"><span class="toc-number">2.8.</span> <span class="toc-text">@vue&#x2F;cli 单vue文件讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli-欢迎界面清理"><span class="toc-number">2.9.</span> <span class="toc-text">@vue&#x2F;cli 欢迎界面清理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue指令"><span class="toc-number">3.</span> <span class="toc-text">Vue指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vue基础-插值表达式"><span class="toc-number">3.1.</span> <span class="toc-text">vue基础-插值表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue基础-MVVM设计模式"><span class="toc-number">3.2.</span> <span class="toc-text">vue基础-MVVM设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-bind"><span class="toc-number">3.3.</span> <span class="toc-text">vue指令-v-bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-on"><span class="toc-number">3.4.</span> <span class="toc-text">vue指令-v-on</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-on事件对象"><span class="toc-number">3.5.</span> <span class="toc-text">vue指令-v-on事件对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-on修饰符"><span class="toc-number">3.6.</span> <span class="toc-text">vue指令-v-on修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-on按键修饰符"><span class="toc-number">3.7.</span> <span class="toc-text">vue指令-v-on按键修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#翻转世界案例"><span class="toc-number">3.8.</span> <span class="toc-text">翻转世界案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-model"><span class="toc-number">3.9.</span> <span class="toc-text">vue指令 v-model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-model修饰符"><span class="toc-number">3.10.</span> <span class="toc-text">vue指令 v-model修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-text和v-html"><span class="toc-number">3.11.</span> <span class="toc-text">vue指令 v-text和v-html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-show和v-if"><span class="toc-number">3.12.</span> <span class="toc-text">vue指令 v-show和v-if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例-折叠面板"><span class="toc-number">3.13.</span> <span class="toc-text">案例-折叠面板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue指令-v-for"><span class="toc-number">3.14.</span> <span class="toc-text">vue指令-v-for</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#面试题"><span class="toc-number">4.</span> <span class="toc-text">面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue的最大优势是什么"><span class="toc-number">4.1.</span> <span class="toc-text">Vue的最大优势是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue和jQuery区别是什么"><span class="toc-number">4.2.</span> <span class="toc-text">Vue和jQuery区别是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mvvm和mvc区别是什么"><span class="toc-number">4.3.</span> <span class="toc-text">mvvm和mvc区别是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue常用修饰符有哪些"><span class="toc-number">4.4.</span> <span class="toc-text">Vue常用修饰符有哪些?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue2-x兼容IE哪个版本以上"><span class="toc-number">4.5.</span> <span class="toc-text">Vue2.x兼容IE哪个版本以上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对Vue渐进式的理解"><span class="toc-number">4.6.</span> <span class="toc-text">对Vue渐进式的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-show和v-if的区别"><span class="toc-number">4.7.</span> <span class="toc-text">v-show和v-if的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说出至少4个Vue指令及作用"><span class="toc-number">4.8.</span> <span class="toc-text">说出至少4个Vue指令及作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么避免v-for和v-if在一起使用"><span class="toc-number">4.9.</span> <span class="toc-text">为什么避免v-for和v-if在一起使用</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">郝永亮的主页</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Vue2.5-01</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-05-20<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2021-09-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><h1 id="Vue基本概念"><a href="#Vue基本概念" class="headerlink" title="Vue基本概念"></a>Vue基本概念</h1><h2 id="为何学Vue"><a href="#为何学Vue" class="headerlink" title="为何学Vue"></a>为何学Vue</h2><blockquote>
+<p>目标: 更少的时间,干更多的活. 开发网站速度, 快</p>
+</blockquote>
+<p><img src="/" alt="image-20210317180201113" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210317180201113.png"></p>
+<p>例如: 把数组数据-循环铺设到li中, 看看分别如何做的?</p>
+<p>原生js做法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id&#x3D;&quot;myUl&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    let arr &#x3D; [&quot;春天&quot;, &quot;夏天&quot;, &quot;秋天&quot;, &quot;冬天&quot;];</span><br><span class="line">    let myUl &#x3D; document.getElementById(&quot;myUl&quot;);</span><br><span class="line">    for (let i &#x3D; 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        let theLi &#x3D; document.createElement(&quot;li&quot;);</span><br><span class="line">        theLi.innerHTML &#x3D; arr[i];</span><br><span class="line">        myUl.appendChild(theLi);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Vue.js做法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-for&#x3D;&quot;item in arr&quot;&gt;&#123;&#123;item&#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">        data: &#123;</span><br><span class="line">            arr: [&quot;春天&quot;, &quot;夏天&quot;, &quot;秋天&quot;, &quot;冬天&quot;] </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意: 虽然vue写起来很爽, 但是一定不要忘记, vue的底层还是原生js</p>
+<p>开发更加的效率和简洁, 易于维护, 快!快!快!就是块 (甚至测试, Java, Python工程师都要学点vue, 方便与前端沟通)</p>
+<p>现在很多项目都是用vue开发的</p>
+<p><img src="/" alt="image-20210317180240323" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210317180240323.png"></p>
+<p>市场上90%工作都要求会vue, 会vue拿高薪, 甚至java或测试都要学点vue</p>
+<p><img src="/" alt="image-20210317180255055" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210317180255055.png"></p>
+<h2 id="Vue是什么"><a href="#Vue是什么" class="headerlink" title="Vue是什么"></a>Vue是什么</h2><p>logo镇楼</p>
+<p><img src="/" alt="Vue" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/VUE-logo.png"></p>
+<p>==渐进式==javacript==框架==, 一套拥有自己规则的语法</p>
+<p>官网地址: <a href="https://cn.vuejs.org/" target="_blank" rel="noopener">https://cn.vuejs.org/</a> (作者: 尤雨溪)</p>
+<blockquote>
+<h3 id="什么是渐进式"><a href="#什么是渐进式" class="headerlink" title="什么是渐进式"></a>什么是渐进式</h3></blockquote>
+<p>渐进式: 逐渐进步, 想用什么就用什么, 不必全都使用<br><img src="/" alt="image-20210314200521109" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210314200521109.png"></p>
+<p>Vue渐进式: Vue从基础开始, 会循序渐进向前学习, 如下知识点可能你现在不明白, 但是学完整个vue回过头来看, 会很有帮助</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/%E6%B8%90%E8%BF%9B%E5%BC%8F-1613206784433.png"></p>
+<blockquote>
+<h3 id="什么是库和框架"><a href="#什么是库和框架" class="headerlink" title="什么是库和框架"></a>什么是库和框架</h3></blockquote>
+<p>补充概念:</p>
+<p>库:  封装的属性或方法 (例jquery.js)</p>
+<p>框架: 拥有自己的规则和元素, 比库强大的多 (例vue.js)</p>
+<p><img src="/" alt="image-20210111215624065" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210111215624065.png"></p>
+<p><img src="/" alt="image-20210212141558460" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210212141558460.png"></p>
+<h2 id="Vue学习的方式"><a href="#Vue学习的方式" class="headerlink" title="Vue学习的方式"></a>Vue学习的方式</h2><ul>
+<li><p>传统开发模式：基于html/css/js文件开发vue</p>
+<p><img src="/" alt="image-20210228083641377" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210228083641377.png"></p>
+</li>
+<li><p>工程化开发方式：在webpack环境中开发vue，这是最推荐, 企业常用的方式</p>
+<p><img src="/" alt="image-20210228083746746" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210228083746746.png"></p>
+</li>
+</ul>
+<blockquote>
+<h3 id="Vue如何学"><a href="#Vue如何学" class="headerlink" title="Vue如何学"></a>Vue如何学</h3></blockquote>
+<ol>
+<li>每天的知识点自测最好做到了如指掌 - 做不到只能花30分钟去记住结论和公式</li>
+<li>记住vue指令作用, 基础语法 - 弄一个字典(一一映射关系)</li>
+<li>在课上例子, 练习, 案例, 作业, 项目中, 反复磨炼使用</li>
+<li>学会查找问题的方式和解决方式(弄个报错总结.md, 避免反复进坑)</li>
+</ol>
+<blockquote>
+<p>总结: vue是渐进式框架, 有自己的规则, 我们要记住语法, 特点和作用, 反复磨炼使用, 多总结</p>
+</blockquote>
+<h1 id="vue-cli脚手架"><a href="#vue-cli脚手架" class="headerlink" title="@vue/cli脚手架"></a>@vue/cli脚手架</h1><h2 id="vue-cli-脚手架介绍"><a href="#vue-cli-脚手架介绍" class="headerlink" title="@vue/cli 脚手架介绍"></a>@vue/cli 脚手架介绍</h2><blockquote>
+<p>目标: webpack自己配置环境很麻烦, 下载@vue/cli包,用vue命令创建脚手架项目</p>
+</blockquote>
+<ul>
+<li><p>@vue/cli是Vue官方提供的一个全局模块包(得到vue命令), 此包用于创建脚手架项目</p>
+<p>脚手架是为了保证各施工过程顺利进行而搭设的工作平台</p>
+</li>
+</ul>
+<p><img src="/" alt="1586936282638" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/1586936282638.png"></p>
+<blockquote>
+<h3 id="vue-cli的好处"><a href="#vue-cli的好处" class="headerlink" title="@vue/cli的好处"></a>@vue/cli的好处</h3></blockquote>
+<ul>
+<li><p>开箱即用</p>
+<p>0配置webpack</p>
+<p>babel支持</p>
+<p>css, less支持</p>
+<p>开发服务器支持</p>
+</li>
+</ul>
+<h2 id="vue-cli安装"><a href="#vue-cli安装" class="headerlink" title="@vue/cli安装"></a>@vue/cli安装</h2><blockquote>
+<p>目标: 把@vue/cli模块包按到全局, 电脑拥有vue命令, 才能创建脚手架工程</p>
+</blockquote>
+<ul>
+<li>全局安装命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add @vue/cli</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<p>注意: 如果半天没动静(95%都是网速问题), 可以ctrl c </p>
+<ol>
+<li><p>停止重新来</p>
+</li>
+<li><p>换一个网继续重来</p>
+</li>
+</ol>
+<ul>
+<li>查看<code>vue</code>脚手架版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue -V</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 如果出现版本号就安装成功, 否则失败</p>
+</blockquote>
+<h2 id="vue-cli-创建项目启动服务"><a href="#vue-cli-创建项目启动服务" class="headerlink" title="@vue/cli 创建项目启动服务"></a>@vue/cli 创建项目启动服务</h2><blockquote>
+<p>目标: 使用vue命令, 创建脚手架项目</p>
+</blockquote>
+<p>==注意: 项目名不能带大写字母, 中文和特殊符号==</p>
+<ol>
+<li>创建项目</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vue和create是命令, vuecli-demo是文件夹名</span></span><br><span class="line">vue create vuecli-demo</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>选择模板</p>
+<p>==可以上下箭头选择, 弄错了ctrl+c重来==</p>
+</li>
+</ol>
+<p><img src="/" alt="image-20210116230221236" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210116230221236.png"></p>
+<p>​         选择用什么方式下载脚手架项目需要的依赖包<img src="/" alt="Snipaste_2021-03-26_15-24-14" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/Snipaste_2021-03-26_15-24-14.png"></p>
+<ol start="3">
+<li>回车等待生成项目文件夹+文件+下载必须的第三方包们</li>
+</ol>
+<p><img src="/" alt="image-20210212174314768" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210212174314768.png"></p>
+<ol start="4">
+<li>进入脚手架项目下, 启动内置的热更新本地服务器</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> vuecil-demo</span><br><span class="line"></span><br><span class="line">npm run serve</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">yarn serve</span><br></pre></td></tr></table></figure>
+
+<p>只要看到绿色的 - 啊. 你成功了(底层node+webpack热更新服务)</p>
+<p><img src="/" alt="image-20210116231815543" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210116231815543.png"></p>
+<p>打开浏览器输入上述地址</p>
+<p><img src="/" alt="image-20210116233035582" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210116233035582.png"></p>
+<blockquote>
+<p>总结: vue命令创建工程目录, 项目内置webpack本地热更新服务器, 帮我们打包项目预览项目</p>
+</blockquote>
+<h2 id="vue-cli-目录和代码分析"><a href="#vue-cli-目录和代码分析" class="headerlink" title="@vue/cli 目录和代码分析"></a>@vue/cli 目录和代码分析</h2><blockquote>
+<p>目标: 讲解重点文件夹, 文件的作用, 以及文件里代码的意思</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vuecil-demo        <span class="comment"># 项目目录</span></span><br><span class="line">   ├── node_modules <span class="comment"># 项目依赖的第三方包</span></span><br><span class="line">   ├── public       <span class="comment"># 静态文件目录</span></span><br><span class="line">     ├── favicon.ico<span class="comment"># 浏览器小图标</span></span><br><span class="line">     └── index.html <span class="comment"># 单页面的html文件(网页浏览的是它)</span></span><br><span class="line">   ├── src          <span class="comment"># 业务文件夹</span></span><br><span class="line">     ├── assets     <span class="comment"># 静态资源</span></span><br><span class="line">       └── logo.png <span class="comment"># vue的logo图片</span></span><br><span class="line">     ├── components <span class="comment"># 组件目录</span></span><br><span class="line">       └── HelloWorld.vue <span class="comment"># 欢迎页面vue代码文件 </span></span><br><span class="line">     ├── App.vue    <span class="comment"># 整个应用的根组件</span></span><br><span class="line">     └── main.js    <span class="comment"># 入口js文件</span></span><br><span class="line">   ├── .gitignore   <span class="comment"># git提交忽略配置</span></span><br><span class="line">   ├── babel.config.js  <span class="comment"># babel配置</span></span><br><span class="line">   ├── package.json  <span class="comment"># 依赖包列表</span></span><br><span class="line">   ├── README.md    <span class="comment"># 项目说明</span></span><br><span class="line">└── yarn.lock    <span class="comment"># 项目包版本锁定和缓存地址</span></span><br></pre></td></tr></table></figure>
+
+<p>主要文件及含义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node_modules下都是下载的第三方包</span><br><span class="line">public/index.html – 浏览器运行的网页</span><br><span class="line">src/main.js – webpack打包的入口文件</span><br><span class="line">src/App.vue – vue项目入口页面</span><br><span class="line">package.json – 依赖包列表文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="vue-cli-项目架构了解"><a href="#vue-cli-项目架构了解" class="headerlink" title="@vue/cli 项目架构了解"></a>@vue/cli 项目架构了解</h2><blockquote>
+<p>目标: 知道项目入口, 以及代码执行顺序和引入关系</p>
+</blockquote>
+<p><img src="/" alt="image-20210317201811310" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210317201811310.png"></p>
+<h2 id="vue-cli-自定义配置"><a href="#vue-cli-自定义配置" class="headerlink" title="@vue/cli 自定义配置"></a>@vue/cli 自定义配置</h2><blockquote>
+<p>目标：项目中没有webpack.config.js文件，因为@vue/cli用的vue.config.js</p>
+</blockquote>
+<p>src并列处新建vue.config.js</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 覆盖webpack的配置 */</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devServer: &#123; <span class="comment">// 自定义服务配置</span></span><br><span class="line">    open: <span class="literal">true</span>, <span class="comment">// 自动打开浏览器</span></span><br><span class="line">    port: <span class="number">3000</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="eslint了解"><a href="#eslint了解" class="headerlink" title="eslint了解"></a>eslint了解</h2><blockquote>
+<p>目标: 知道eslint的作用, 和如何暂时关闭, 它是一个==代码检查工具==</p>
+</blockquote>
+<p>例子: 先在main.js 随便声明个变量, 但是不要使用</p>
+<p><img src="/" alt="image-20210326165406694" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210326165406694.png"></p>
+<p>观察发现, 终端和页面都报错了</p>
+<p>==记住以后见到这样子的错误, 证明你的代码不严谨==</p>
+<p><img src="/" alt="image-20210326165544865" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210326165544865.png"></p>
+<p><img src="/" alt="image-20210326165606191" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210326165606191.png"></p>
+<p>方式1: 手动解决掉错误, 以后项目中会讲如何自动解决</p>
+<p>方式2: 暂时关闭eslint检查(因为现在主要精力在学习Vue语法上), 在vue.config.js中配置后重启服务</p>
+<p><img src="/" alt="image-20210511112152702" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/image-20210511112152702.png"></p>
+<h2 id="vue-cli-单vue文件讲解"><a href="#vue-cli-单vue文件讲解" class="headerlink" title="@vue/cli 单vue文件讲解"></a>@vue/cli 单vue文件讲解</h2><blockquote>
+<p>目标: 单vue文件好处, 独立作用域互不影响</p>
+</blockquote>
+<p>Vue推荐采用.vue文件来开发项目</p>
+<p>template里只能有一个根标签</p>
+<p>vue文件-独立模块-作用域互不影响</p>
+<p>style配合scoped属性, 保证样式只针对当前template内标签生效</p>
+<p>vue文件配合webpack, 把他们打包起来插入到index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- template必须, 只能有一个根标签, 影响渲染到页面的标签结构 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;欢迎使用vue&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- js相关 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;App&#39;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 当前组件的样式, 设置scoped, 可以保证样式只对当前页面有效 --&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终: Vue文件配合webpack, 把他们打包起来插入到index.html, 然后在浏览器运行</p>
+<h2 id="vue-cli-欢迎界面清理"><a href="#vue-cli-欢迎界面清理" class="headerlink" title="@vue/cli 欢迎界面清理"></a>@vue/cli 欢迎界面清理</h2><blockquote>
+<p>目标: 我们开始写我们自己的代码, 无需欢迎页面</p>
+</blockquote>
+<ul>
+<li>src/App.vue默认有很多内容, 可以全部删除留下框</li>
+<li>assets 和 components 文件夹下的一切都删除掉 (不要默认的欢迎页面)</li>
+</ul>
+<h1 id="Vue指令"><a href="#Vue指令" class="headerlink" title="Vue指令"></a>Vue指令</h1><h2 id="vue基础-插值表达式"><a href="#vue基础-插值表达式" class="headerlink" title="vue基础-插值表达式"></a>vue基础-插值表达式</h2><blockquote>
+<p>目的: 在dom标签中, 直接插入内容</p>
+</blockquote>
+<p>又叫: 声明式渲染/文本插值</p>
+<p>语法: </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; msg &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h2&gt;&#123;&#123; obj.name &#125;&#125;&lt;/</span>h2&gt;</span><br><span class="line">    &lt;h3&gt;&#123;&#123; obj.age &gt; <span class="number">18</span> ? <span class="string">'成年'</span> : <span class="string">'未成年'</span> &#125;&#125;&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  data() &#123; /</span><span class="regexp">/ 格式固定, 定义vue数据之处</span></span><br><span class="line"><span class="regexp">    return &#123;  /</span><span class="regexp">/ key相当于变量名</span></span><br><span class="line"><span class="regexp">      msg: "hello, vue",</span></span><br><span class="line"><span class="regexp">      obj: &#123;</span></span><br><span class="line"><span class="regexp">        name: "小vue",</span></span><br><span class="line"><span class="regexp">        age: 5</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: dom中插值表达式赋值, vue的变量必须在data里声明</p>
+</blockquote>
+<h2 id="vue基础-MVVM设计模式"><a href="#vue基础-MVVM设计模式" class="headerlink" title="vue基础-MVVM设计模式"></a>vue基础-MVVM设计模式</h2><blockquote>
+<p>目的: 转变思维, 用数据驱动视图改变, 操作dom的事, vue源码内干了</p>
+</blockquote>
+<p>设计模式: 是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。</p>
+<p>演示: 在上个代码基础上, 在devtool工具改变M层的变量, 观察V层(视图的自动同步)</p>
+<p>等下面学了v-model再观察V改变M的效果</p>
+<p><img src="/" alt="1" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/1.gif"></p>
+<ul>
+<li>MVVM，一种软件架构模式，决定了写代码的思想和层次<ul>
+<li>M：   model数据模型          (data里定义)    </li>
+<li>V：    view视图                   （html页面）</li>
+<li>VM： ViewModel视图模型  (vue.js源码)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>MVVM通过<code>数据双向绑定</code>让数据自动地双向同步  <strong>不再需要操作DOM</strong><ul>
+<li>V（修改视图） -&gt; M（数据自动同步）</li>
+<li>M（修改数据） -&gt; V（视图自动同步）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/MVVM.png"></p>
+<p><strong>1. 在vue中，不推荐直接手动操作DOM！！！</strong>  </p>
+<p><strong>2. 在vue中，通过数据驱动视图，不要在想着怎么操作DOM，而是想着如何操作数据！！</strong>(思想转变)</p>
+<p><img src="/" alt="" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A.png"></p>
+<blockquote>
+<p>总结: vue源码内采用MVVM设计模式思想, 大大减少了DOM操作, 挺高开发效率</p>
+</blockquote>
+<h2 id="vue指令-v-bind"><a href="#vue指令-v-bind" class="headerlink" title="vue指令-v-bind"></a>vue指令-v-bind</h2><blockquote>
+<p>目标: 给标签属性设置vue变量的值</p>
+</blockquote>
+<p><strong>vue指令, 实质上就是特殊的 html 标签属性, 特点:  v- 开头</strong></p>
+<p>每个指令, 都有独立的作用</p>
+<ul>
+<li>语法：<code>v-bind:属性名=&quot;vue变量&quot;</code></li>
+<li>简写：<code>:属性名=&quot;vue变量&quot;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue指令-v-bind属性动态赋值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span>我是a标签<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"imgSrc"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 把vue变量的值, 赋予给dom属性上, 影响标签显示效果</p>
+</blockquote>
+<h2 id="vue指令-v-on"><a href="#vue指令-v-on" class="headerlink" title="vue指令-v-on"></a>vue指令-v-on</h2><blockquote>
+<p>目标: 给标签绑定事件</p>
+</blockquote>
+<ul>
+<li>语法<ul>
+<li>v-on:事件名=”要执行的==少量代码==”</li>
+<li>v-on:事件名=”methods中的函数”</li>
+<li>v-on:事件名=”methods中的函数(实参)” </li>
+</ul>
+</li>
+<li>简写: @事件名=”methods中的函数”</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue指令:   v-on事件绑定--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>你要买商品的数量: &#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"count = count + 1"</span>&gt;</span>增加1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"addFn"</span>&gt;</span>增加1个<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"addCountFn(5)"</span>&gt;</span>一次加5件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"subFn"</span>&gt;</span>减少<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// ...其他省略</span></span></span><br><span class="line">        methods: &#123;</span><br><span class="line"><span class="actionscript">            addFn()&#123; <span class="comment">// this代表export default后面的组件对象(下属有data里return出来的属性)</span></span></span><br><span class="line"><span class="actionscript">                <span class="keyword">this</span>.count++</span></span><br><span class="line">            &#125;,</span><br><span class="line">            addCountFn(num)&#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">this</span>.count += num</span></span><br><span class="line">            &#125;,</span><br><span class="line">            subFn()&#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">this</span>.count--</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 常用@事件名, 给dom标签绑定事件, 以及=右侧事件处理函数</p>
+</blockquote>
+<h2 id="vue指令-v-on事件对象"><a href="#vue指令-v-on事件对象" class="headerlink" title="vue指令-v-on事件对象"></a>vue指令-v-on事件对象</h2><blockquote>
+<p>目标: vue事件处理函数中, 拿到事件对象</p>
+</blockquote>
+<ul>
+<li>语法:<ul>
+<li>无传参, 通过形参直接接收</li>
+<li>传参, 通过$event指代事件对象传给事件处理函数</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;a @click&#x3D;&quot;one&quot; href&#x3D;&quot;http:&#x2F;&#x2F;www.baidu.com&quot;&gt;阻止百度&lt;&#x2F;a&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line">    &lt;a @click&#x3D;&quot;two(10, $event)&quot; href&#x3D;&quot;http:&#x2F;&#x2F;www.baidu.com&quot;&gt;阻止去百度&lt;&#x2F;a&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    one(e)&#123;</span><br><span class="line">      e.preventDefault()</span><br><span class="line">    &#125;,</span><br><span class="line">    two(num, e)&#123;</span><br><span class="line">      e.preventDefault()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vue指令-v-on修饰符"><a href="#vue指令-v-on修饰符" class="headerlink" title="vue指令-v-on修饰符"></a>vue指令-v-on修饰符</h2><blockquote>
+<p>目的: 在事件后面.修饰符名 - 给事件带来更强大的功能</p>
+</blockquote>
+<ul>
+<li>语法:<ul>
+<li>@事件名.修饰符=”methods里函数”<ul>
+<li>.stop - 阻止事件冒泡</li>
+<li>.prevent - 阻止默认行为</li>
+<li>.once - 程序运行期间, 只触发一次事件处理函数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"fatherFn"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- vue对事件进行了修饰符设置, 在事件后面.修饰符名即可使用更多的功能 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop</span>=<span class="string">"btn"</span>&gt;</span>.stop阻止事件冒泡<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.baidu.com"</span> @<span class="attr">click.prevent</span>=<span class="string">"btn"</span>&gt;</span>.prevent阻止默认行为<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.once</span>=<span class="string">"btn"</span>&gt;</span>.once程序运行期间, 只触发一次事件处理函数<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    fatherFn()&#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">"father被触发"</span>);</span></span><br><span class="line">    &#125;,</span><br><span class="line">    btn()&#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="number">1</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 修饰符给事件扩展额外功能</p>
+</blockquote>
+<h2 id="vue指令-v-on按键修饰符"><a href="#vue指令-v-on按键修饰符" class="headerlink" title="vue指令-v-on按键修饰符"></a>vue指令-v-on按键修饰符</h2><blockquote>
+<p>目标: 给键盘事件, 添加修饰符, 增强能力</p>
+</blockquote>
+<ul>
+<li>语法:<ul>
+<li>@keyup.enter  -  监测回车按键</li>
+<li>@keyup.esc     -   监测返回按键</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://cn.vuejs.org/v2/guide/events.html#%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6" target="_blank" rel="noopener">更多修饰符</a> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">keydown.enter</span>=<span class="string">"enterFn"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">keydown.esc</span>=<span class="string">"escFn"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"> methods: &#123;</span><br><span class="line">   enterFn()&#123;</span><br><span class="line"><span class="javascript">     <span class="built_in">console</span>.log(<span class="string">"enter回车按键了"</span>);</span></span><br><span class="line">   &#125;,</span><br><span class="line">   escFn()&#123;</span><br><span class="line"><span class="javascript">     <span class="built_in">console</span>.log(<span class="string">"esc按键了"</span>);</span></span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 多使用事件修饰符, 可以提高开发效率, 少去自己判断过程</p>
+</blockquote>
+<h2 id="翻转世界案例"><a href="#翻转世界案例" class="headerlink" title="翻转世界案例"></a>翻转世界案例</h2><blockquote>
+<p>目标: 点击按钮 - 把文字取反显示 - 再点击取反显示(回来了)</p>
+</blockquote>
+<blockquote>
+<p>提示: 把字符串取反赋予回去</p>
+</blockquote>
+<p>效果演示:</p>
+<p><img src="/" alt="练习1_翻转世界" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/2.8.0_%E7%BB%83%E4%B9%A0_%E7%BF%BB%E8%BD%AC%E4%B8%96%E7%95%8C.gif"></p>
+<p>正确代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"btn"</span>&gt;</span>逆转世界<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      message: <span class="string">"HELLO, WORLD"</span>,</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    btn()&#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.message = <span class="keyword">this</span>.message.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 记住方法特点, 多做需求, vue是数据变化视图自动更新, 减少操作DOM时间, 提高开发效率</p>
+</blockquote>
+<h2 id="vue指令-v-model"><a href="#vue指令-v-model" class="headerlink" title="vue指令 v-model"></a>vue指令 v-model</h2><blockquote>
+<p>目标: 把value属性和vue数据变量, 双向绑定到一起</p>
+</blockquote>
+<ul>
+<li>语法: v-model=”vue数据变量”</li>
+<li>双向数据绑定<ul>
+<li>数据变化 -&gt; 视图自动同步</li>
+<li>视图变化 -&gt; 数据自动同步</li>
+</ul>
+</li>
+<li>演示: 用户名绑定 - vue内部是MVVM设计模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!-- </span><br><span class="line">    	v-model:是实现vuejs变量和表单标签value属性, 双向绑定的指令</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;用户名:&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;username&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;密码:&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;password&quot; v-model&#x3D;&quot;pass&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;来自于: &lt;&#x2F;span&gt;</span><br><span class="line">      &lt;!-- 下拉菜单要绑定在select上 --&gt;</span><br><span class="line">      &lt;select v-model&#x3D;&quot;from&quot;&gt;</span><br><span class="line">        &lt;option value&#x3D;&quot;北京市&quot;&gt;北京&lt;&#x2F;option&gt;</span><br><span class="line">        &lt;option value&#x3D;&quot;南京市&quot;&gt;南京&lt;&#x2F;option&gt;</span><br><span class="line">        &lt;option value&#x3D;&quot;天津市&quot;&gt;天津&lt;&#x2F;option&gt;</span><br><span class="line">      &lt;&#x2F;select&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;!-- (重要)</span><br><span class="line">      遇到复选框, v-model的变量值</span><br><span class="line">      非数组 - 关联的是复选框的checked属性</span><br><span class="line">      数组   - 关联的是复选框的value属性</span><br><span class="line">       --&gt;</span><br><span class="line">      &lt;span&gt;爱好: &lt;&#x2F;span&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;checkbox&quot; v-model&#x3D;&quot;hobby&quot; value&#x3D;&quot;抽烟&quot;&gt;抽烟</span><br><span class="line">      &lt;input type&#x3D;&quot;checkbox&quot; v-model&#x3D;&quot;hobby&quot; value&#x3D;&quot;喝酒&quot;&gt;喝酒</span><br><span class="line">      &lt;input type&#x3D;&quot;checkbox&quot; v-model&#x3D;&quot;hobby&quot; value&#x3D;&quot;写代码&quot;&gt;写代码</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;性别: &lt;&#x2F;span&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;radio&quot; value&#x3D;&quot;男&quot; name&#x3D;&quot;sex&quot; v-model&#x3D;&quot;gender&quot;&gt;男</span><br><span class="line">      &lt;input type&#x3D;&quot;radio&quot; value&#x3D;&quot;女&quot; name&#x3D;&quot;sex&quot; v-model&#x3D;&quot;gender&quot;&gt;女</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;自我介绍&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;textarea v-model&#x3D;&quot;intro&quot;&gt;&lt;&#x2F;textarea&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      username: &quot;&quot;,</span><br><span class="line">      pass: &quot;&quot;,</span><br><span class="line">      from: &quot;&quot;,</span><br><span class="line">      hobby: [], </span><br><span class="line">      sex: &quot;&quot;,</span><br><span class="line">      intro: &quot;&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">    &#x2F;&#x2F; 总结:</span><br><span class="line">    &#x2F;&#x2F; 特别注意: v-model, 在input[checkbox]的多选框状态</span><br><span class="line">    &#x2F;&#x2F; 变量为非数组, 则绑定的是checked的属性(true&#x2F;false) - 常用于: 单个绑定使用</span><br><span class="line">    &#x2F;&#x2F; 变量为数组, 则绑定的是他们的value属性里的值 - 常用于: 收集勾选了哪些值</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 本阶段v-model只能用在表单元素上, 以后学组件后讲v-model高级用法</p>
+</blockquote>
+<h2 id="vue指令-v-model修饰符"><a href="#vue指令-v-model修饰符" class="headerlink" title="vue指令 v-model修饰符"></a>vue指令 v-model修饰符</h2><blockquote>
+<p>目标: 让v-model拥有更强大的功能</p>
+</blockquote>
+<ul>
+<li>语法:<ul>
+<li>v-model.修饰符=”vue数据变量”<ul>
+<li>.number   以parseFloat转成数字类型</li>
+<li>.trim          去除首尾空白字符</li>
+<li>.lazy           在change时触发而非inupt时</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;年龄:&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;text&quot; v-model.number&#x3D;&quot;age&quot;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;人生格言:&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;text&quot; v-model.trim&#x3D;&quot;motto&quot;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;自我介绍:&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;textarea v-model.lazy&#x3D;&quot;intro&quot;&gt;&lt;&#x2F;textarea&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      age: &quot;&quot;,</span><br><span class="line">      motto: &quot;&quot;,</span><br><span class="line">      intro: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: v-model修饰符, 可以对值进行预处理, 非常高效好用</p>
+</blockquote>
+<h2 id="vue指令-v-text和v-html"><a href="#vue指令-v-text和v-html" class="headerlink" title="vue指令 v-text和v-html"></a>vue指令 v-text和v-html</h2><blockquote>
+<p>目的: 更新DOM对象的innerText/innerHTML</p>
+</blockquote>
+<ul>
+<li>语法:<ul>
+<li>v-text=”vue数据变量”    </li>
+<li>v-html=”vue数据变量”</li>
+</ul>
+</li>
+<li>注意: 会覆盖插值表达式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p v-text&#x3D;&quot;str&quot;&gt;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p v-html&#x3D;&quot;str&quot;&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      str: &quot;&lt;span&gt;我是一个span标签&lt;&#x2F;span&gt;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: v-text把值当成普通字符串显示, v-html把值当做html解析</p>
+</blockquote>
+<h2 id="vue指令-v-show和v-if"><a href="#vue指令-v-show和v-if" class="headerlink" title="vue指令 v-show和v-if"></a>vue指令 v-show和v-if</h2><blockquote>
+<p>目标: 控制标签的隐藏或出现</p>
+</blockquote>
+<ul>
+<li>语法:<ul>
+<li>v-show=”vue变量”            </li>
+<li>v-if=”vue变量” </li>
+</ul>
+</li>
+<li>原理<ul>
+<li>v-show 用的display:none隐藏   (频繁切换使用)</li>
+<li>v-if  直接从DOM树上移除</li>
+</ul>
+</li>
+<li>高级<ul>
+<li>v-else使用</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">"isOk"</span>&gt;</span>v-show的盒子<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">"isOk"</span>&gt;</span>v-if的盒子<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"age &gt; 18"</span>&gt;</span>我成年了<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>还得多吃饭<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      isOk: <span class="literal">true</span>,</span></span><br><span class="line">      age: 15</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: 使用v-show和v-if以及v-else指令, 方便通过变量控制一套标签出现/隐藏</p>
+</blockquote>
+<h2 id="案例-折叠面板"><a href="#案例-折叠面板" class="headerlink" title="案例-折叠面板"></a>案例-折叠面板</h2><blockquote>
+<p>目标: 点击展开或收起时，把内容区域显示或者隐藏</p>
+</blockquote>
+<p><img src="/" alt="案例_折叠面板" class="lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/jichu/day02/images/%E6%A1%88%E4%BE%8B_%E6%8A%98%E5%8F%A0%E9%9D%A2%E6%9D%BF.gif"></p>
+<p>此案例使用了less语法, 项目中下载模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add less@3.0.4 less-loader@5.0.0 -D</span><br></pre></td></tr></table></figure>
+
+<p>只有标签和样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;h3&gt;案例：折叠面板&lt;&#x2F;h3&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;title&quot;&gt;</span><br><span class="line">        &lt;h4&gt;芙蓉楼送辛渐&lt;&#x2F;h4&gt;</span><br><span class="line">        &lt;span class&#x3D;&quot;btn&quot; &gt;</span><br><span class="line">          收起</span><br><span class="line">        &lt;&#x2F;span&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">        &lt;p&gt;寒雨连江夜入吴,&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;平明送客楚山孤。&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;洛阳亲友如相问，&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;一片冰心在玉壶。&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;less&quot;&gt;</span><br><span class="line">body &#123;</span><br><span class="line">  background-color: #ccc;</span><br><span class="line">  #app &#123;</span><br><span class="line">    width: 400px;</span><br><span class="line">    margin: 20px auto;</span><br><span class="line">    background-color: #fff;</span><br><span class="line">    border: 4px solid blueviolet;</span><br><span class="line">    border-radius: 1em;</span><br><span class="line">    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);</span><br><span class="line">    padding: 1em 2em 2em;</span><br><span class="line">    h3 &#123;</span><br><span class="line">      text-align: center;</span><br><span class="line">    &#125;</span><br><span class="line">    .title &#123;</span><br><span class="line">      display: flex;</span><br><span class="line">      justify-content: space-between;</span><br><span class="line">      align-items: center;</span><br><span class="line">      border: 1px solid #ccc;</span><br><span class="line">      padding: 0 1em;</span><br><span class="line">    &#125;</span><br><span class="line">    .title h4 &#123;</span><br><span class="line">      line-height: 2;</span><br><span class="line">      margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .container &#123;</span><br><span class="line">      border: 1px solid #ccc;</span><br><span class="line">      padding: 0 1em;</span><br><span class="line">    &#125;</span><br><span class="line">    .btn &#123;</span><br><span class="line">      &#x2F;* 鼠标改成手的形状 *&#x2F;</span><br><span class="line">      cursor: pointer;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>正确答案:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;h3&gt;案例：折叠面板&lt;&#x2F;h3&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;title&quot;&gt;</span><br><span class="line">        &lt;h4&gt;芙蓉楼送辛渐&lt;&#x2F;h4&gt;</span><br><span class="line">        &lt;span class&#x3D;&quot;btn&quot; @click&#x3D;&quot;isShow &#x3D; !isShow&quot;&gt;</span><br><span class="line">          &#123;&#123; isShow ? &#39;收起&#39; : &#39;展开&#39; &#125;&#125;</span><br><span class="line">        &lt;&#x2F;span&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;container&quot; v-show&#x3D;&quot;isShow&quot;&gt;</span><br><span class="line">        &lt;p&gt;寒雨连江夜入吴, &lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;平明送客楚山孤。&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;洛阳亲友如相问，&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;一片冰心在玉壶。&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isShow: false</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vue指令-v-for"><a href="#vue指令-v-for" class="headerlink" title="vue指令-v-for"></a>vue指令-v-for</h2><blockquote>
+<p>目标: 列表渲染, 所在标签结构, 按照数据数量, 循环生成</p>
+</blockquote>
+<ul>
+<li><p>语法</p>
+<ul>
+<li>v-for=”(值, 索引) in 目标结构”</li>
+<li>v-for=”值 in 目标结构”</li>
+</ul>
+</li>
+<li><p>目标结构:</p>
+<ul>
+<li>可以遍历数组 / 对象 / 数字 / 字符串 (可遍历结构)</li>
+</ul>
+</li>
+<li><p>注意:</p>
+<p>v-for的临时变量名不能用到v-for范围外</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">      &lt;!-- v-for 把一组数据, 渲染成一组DOM --&gt;</span><br><span class="line">      &lt;!-- 口诀: 让谁循环生成, v-for就写谁身上 --&gt;</span><br><span class="line">      &lt;p&gt;学生姓名&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li v-for&#x3D;&quot;(item, index) in arr&quot; :key&#x3D;&quot;item&quot;&gt;</span><br><span class="line">          &#123;&#123; index &#125;&#125; - &#123;&#123; item &#125;&#125;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">      &lt;p&gt;学生详细信息&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li v-for&#x3D;&quot;obj in stuArr&quot; :key&#x3D;&quot;obj.id&quot;&gt;</span><br><span class="line">          &lt;span&gt;&#123;&#123; obj.name &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;span&gt;&#123;&#123; obj.sex &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;span&gt;&#123;&#123; obj.hobby &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">      &lt;!-- v-for遍历对象(了解) --&gt;</span><br><span class="line">      &lt;p&gt;老师信息&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;div v-for&#x3D;&quot;(value, key) in tObj&quot; :key&#x3D;&quot;value&quot;&gt;</span><br><span class="line">        &#123;&#123; key &#125;&#125; -- &#123;&#123; value &#125;&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">      &lt;!-- v-for遍历整数(了解) - 从1开始 --&gt;</span><br><span class="line">      &lt;p&gt;序号&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;div v-for&#x3D;&quot;i in count&quot; :key&#x3D;&quot;i&quot;&gt;&#123;&#123; i &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      arr: [&quot;小明&quot;, &quot;小欢欢&quot;, &quot;大黄&quot;],</span><br><span class="line">      stuArr: [</span><br><span class="line">        &#123;</span><br><span class="line">          id: 1001,</span><br><span class="line">          name: &quot;孙悟空&quot;,</span><br><span class="line">          sex: &quot;男&quot;,</span><br><span class="line">          hobby: &quot;吃桃子&quot;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id: 1002,</span><br><span class="line">          name: &quot;猪八戒&quot;,</span><br><span class="line">          sex: &quot;男&quot;,</span><br><span class="line">          hobby: &quot;背媳妇&quot;,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">      tObj: &#123;</span><br><span class="line">        name: &quot;小黑&quot;,</span><br><span class="line">        age: 18,</span><br><span class="line">        class: &quot;1期&quot;,</span><br><span class="line">      &#125;,</span><br><span class="line">      count: 10,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结: vue最常用指令, 铺设页面利器, 快速把数据赋予到相同的dom结构上循环生成</p>
+</blockquote>
+<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="Vue的最大优势是什么"><a href="#Vue的最大优势是什么" class="headerlink" title="Vue的最大优势是什么?"></a>Vue的最大优势是什么?</h2><p>​    简单易学, 轻量级整个源码js文件不大, 双向数据绑定, 数据驱动视图, 组件化, 数据和视图分离, </p>
+<p>​    vue负责关联视图和数据, 作者中国人(尤雨溪), 文档都是中文的, 入门教程非常多, 上手简单. </p>
+<p>​    相比传统网页, vue是单页面可以只刷新某一部分</p>
+<h2 id="Vue和jQuery区别是什么"><a href="#Vue和jQuery区别是什么" class="headerlink" title="Vue和jQuery区别是什么?"></a>Vue和jQuery区别是什么?</h2><p>​    jQuery应该算是一个插件, 里面封装了各种易用的方法, 方便你使用更少的代码来操作dom标签</p>
+<p>​    Vue是一套框架, 有自己的规则和体系与语法, 特别是设计思想MVVM, 让数据和视频关联绑定, 省略了很多DOM操作. 然后指令还给标签注入了更多的功能</p>
+<h2 id="mvvm和mvc区别是什么"><a href="#mvvm和mvc区别是什么" class="headerlink" title="mvvm和mvc区别是什么?"></a>mvvm和mvc区别是什么?</h2><p>​    MVC: 也是一种设计模式, 组织代码的结构, 是model数据模型, view视图, Controller控制器, 在控制器这层里编写js代码, 来控制数据和视图关联</p>
+<p>​    MVVM: 即Model-View-ViewModel的简写。即模型-视图-视图模型, VM是这个设计模式的核心, 连接v和m的桥梁, 内部会监听DOM事件, 监听数据对象变化来影响对方. 我们称之为数据绑定</p>
+<h2 id="Vue常用修饰符有哪些"><a href="#Vue常用修饰符有哪些" class="headerlink" title="Vue常用修饰符有哪些?"></a>Vue常用修饰符有哪些?</h2><p>​    .prevent: 提交事件不再重载页面；</p>
+<p>​    .stop: 阻止单击事件冒泡；</p>
+<p>​    .once: 只执行一次这个事件</p>
+<h2 id="Vue2-x兼容IE哪个版本以上"><a href="#Vue2-x兼容IE哪个版本以上" class="headerlink" title="Vue2.x兼容IE哪个版本以上"></a>Vue2.x兼容IE哪个版本以上</h2><p>​    不支持ie8及以下，部分兼容ie9 ，完全兼容10以上， 因为vue的响应式原理是基于es5的Object.defineProperty(),而这个方法不支持ie8及以下。</p>
+<h2 id="对Vue渐进式的理解"><a href="#对Vue渐进式的理解" class="headerlink" title="对Vue渐进式的理解"></a>对Vue渐进式的理解</h2><p>​    渐进式代表的含义是：主张最少, 自底向上, 增量开发, 组件集合, 便于复用</p>
+<h2 id="v-show和v-if的区别"><a href="#v-show和v-if的区别" class="headerlink" title="v-show和v-if的区别"></a>v-show和v-if的区别</h2><p>​    v-show和v-if的区别? 分别说明其使用场景?</p>
+<p>​    v-show 和v-if都是true的时候显示，false的时候隐藏</p>
+<p>​    但是：false的情况下，</p>
+<p>​    v-show是采用的display:none   </p>
+<p>​    v-if采用惰性加载</p>
+<p>​    如果需要频繁切换显示隐藏需要使用v-show</p>
+<h2 id="说出至少4个Vue指令及作用"><a href="#说出至少4个Vue指令及作用" class="headerlink" title="说出至少4个Vue指令及作用"></a>说出至少4个Vue指令及作用</h2><p>​    v-for 根据数组的个数, 循环数组元素的同时还生成所在的标签</p>
+<p>​    v-show 显示内容</p>
+<p>​    v-if    显示与隐藏  </p>
+<p>​    v-else  必须和v-if连用  不能单独使用  否则报错  </p>
+<p>​    v-bind  动态绑定  作用： 及时对页面的数据进行更改, 可以简写成:分号</p>
+<p>​    v-on  给标签绑定函数，可以缩写为@，例如绑定一个点击函数  函数必须写在methods里面</p>
+<p>​    v-text  解析文本</p>
+<p>​    v-html   解析html标签</p>
+<h2 id="为什么避免v-for和v-if在一起使用"><a href="#为什么避免v-for和v-if在一起使用" class="headerlink" title="为什么避免v-for和v-if在一起使用"></a>为什么避免v-for和v-if在一起使用</h2><p>​    Vue 处理指令时，v-for 比 v-if 具有更高的优先级, 虽然用起来也没报错好使, 但是性能不高, 如果你有5个元素被v-for循环, v-if也会分别执行5次.</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">微信：hao_yongliang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://haoyongliang.gitee.io/2020/05/20/%E5%89%8D%E7%AB%AF/vue/Day02_vue%E8%84%9A%E6%89%8B%E6%9E%B6_%E5%9F%BA%E7%A1%80API/">https://haoyongliang.gitee.io/2020/05/20/%E5%89%8D%E7%AB%AF/vue/Day02_vue%E8%84%9A%E6%89%8B%E6%9E%B6_%E5%9F%BA%E7%A1%80API/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haoyongliang.gitee.io" target="_blank">郝永亮的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vue/">vue    </a></div><div class="post_share"><div class="social-share" data-image="/img/post.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="https://gitee.com/haoyongliang/resources/raw/master/images/wx_qr_code.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="https://gitee.com/haoyongliang/resources/raw/master/images/zfb_qr_code.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/05/20/%E5%89%8D%E7%AB%AF/vue/Day03_%E5%9F%BA%E7%A1%80API_%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7_%E8%BF%87%E6%BB%A4%E5%99%A8_%E4%BE%A6%E5%90%AC%E5%99%A8_%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E6%A1%88%E4%BE%8B/"><img class="prev_cover lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vue2.5-02</div></div></a></div><div class="next-post pull_right"><a href="/2020/05/20/%E5%89%8D%E7%AB%AF/Vue2.X(%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E4%B8%8EelementUI%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/"><img class="next_cover lazyload" data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue2.X(基本语法与elementUI组件介绍)</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/05/20/前端/Vue2.X(基本语法与elementUI组件介绍)/" title="Vue2.X(基本语法与elementUI组件介绍)"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-20</div><div class="relatedPosts_title">Vue2.X(基本语法与elementUI组件介绍)</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/20/前端/Vue2.X(axios与综合案例)/" title="Vue2.X(axios与综合案例)"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top2.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-20</div><div class="relatedPosts_title">Vue2.X(axios与综合案例)</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/16/前端/vue/01.VSCode，格式化和eslint冲突，结尾去掉逗号，分号等/" title="VSCode格式化和eslint校验冲突解决方案"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/vscode_eslint.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-07-16</div><div class="relatedPosts_title">VSCode格式化和eslint校验冲突解决方案</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/20/前端/vue/Day03_基础API_计算属性_过滤器_侦听器_品牌管理案例/" title="Vue2.5-02"><img class="relatedPosts_cover lazyload"data-src="https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-20</div><div class="relatedPosts_title">Vue2.5-02</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTI3Ni8yMTc4OQ=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></article></main><footer id="footer" style="background-image: url(https://gitee.com/haoyongliang/resources/raw/master/images/%E5%89%8D%E7%AB%AF/vue/top.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 微信：hao_yongliang</div><div class="framework-info"></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
